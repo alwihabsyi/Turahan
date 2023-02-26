@@ -29,8 +29,8 @@ class rvArticleAdapter(private val data: ArrayList<ArticleExpand.News>) : Recycl
         private var txtDate: TextView? = null
 
         init {
-            imgView = view.findViewById(R.id.ivArtikel)
-            txtTitle = view.findViewById(R.id.tv_judulartikel)
+            imgView = view.findViewById(R.id.ivDonasi)
+            txtTitle = view.findViewById(R.id.tvJudulDonasi)
             txtDate = view.findViewById(R.id.articleDate)
         }
 

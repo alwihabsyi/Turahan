@@ -15,7 +15,7 @@
         android:padding="10dp">
 
         <ImageView
-            android:id="@+id/ivArtikel"
+            android:id="@+id/ivDonasi"
             android:layout_width="120dp"
             android:layout_height="70dp"
             android:layout_centerVertical="true"
@@ -26,12 +26,12 @@
             android:src="@drawable/poster_one" />
 
         <TextView
-            android:id="@+id/tv_judulartikel"
+            android:id="@+id/tvJudulDonasi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="13dp"
             android:layout_marginEnd="13dp"
-            android:layout_toEndOf="@id/ivArtikel"
+            android:layout_toEndOf="@id/ivDonasi"
             android:fontFamily="@font/montserrat_medium"
             android:text="How to recycle plastic waste"
             android:textSize="18sp" />
@@ -39,8 +39,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_judulartikel"
-            android:layout_toEndOf="@id/ivArtikel">
+            android:layout_below="@id/tvJudulDonasi"
+            android:layout_toEndOf="@id/ivDonasi">
 
             <TextView
                 android:id="@+id/articleDate"
@@ -59,7 +59,7 @@
                 android:src="@drawable/circleicon"/>
 
             <TextView
-                android:id="@+id/donationCategory"
+                android:id="@+id/tvKategoriDonasi"
                 android:layout_width="wrap_content"
                 android:layout_toEndOf="@id/dottt"
                 android:layout_marginStart="5dp"

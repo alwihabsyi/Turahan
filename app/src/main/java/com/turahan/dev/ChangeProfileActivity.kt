@@ -1,5 +1,7 @@
 package com.turahan.dev
 
+import android.app.Activity
+import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -22,7 +24,7 @@ class ChangeProfileActivity : AppCompatActivity() {
     private lateinit var storageRef: StorageReference
     private lateinit var database: DatabaseReference
     private lateinit var auth: FirebaseAuth
-    private lateinit var uri: Uri
+    var currentFile: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,15 +35,11 @@ class ChangeProfileActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance().getReference("User")
         profnamepro()
 
-        val pickPhoto = registerForActivityResult(
-            ActivityResultContracts.GetContent(),
-            ActivityResultCallback {
-                binding.profup.setImageURI(it)
-                uri = it!!
-            })
-
         binding.profup.setOnClickListener {
-            pickPhoto.launch("image/*")
+            Intent(Intent.ACTION_GET_CONTENT).also {
+                it.type = "image/*"
+                startActivityForResult(it, Constants.REQUEST_CODE_IMAGE_PICK)
+            }
         }
 
         binding.btnUpdate.setOnClickListener {
@@ -83,7 +81,7 @@ class ChangeProfileActivity : AppCompatActivity() {
 
     private fun uploadProfPic() {
         storageRef = FirebaseStorage.getInstance().getReference("User/" + auth.currentUser?.uid)
-        storageRef.putFile(uri).addOnSuccessListener {
+        storageRef.putFile(currentFile!!).addOnSuccessListener {
 
             it.metadata!!.reference!!.downloadUrl
                 .addOnSuccessListener {
@@ -98,6 +96,17 @@ class ChangeProfileActivity : AppCompatActivity() {
             Toast.makeText(this, "Berhasil Update Profil", Toast.LENGTH_SHORT).show()
         }.addOnFailureListener {
             Toast.makeText(this, it.localizedMessage, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == Constants.REQUEST_CODE_IMAGE_PICK) {
+            data?.data?.let {
+                currentFile = it
+                binding.profup.setImageURI(it)
+            }
         }
     }
 }
