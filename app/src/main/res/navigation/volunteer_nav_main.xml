@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/fragment_volunteer_home">
+
+    <fragment
+        android:id="@+id/fragment_volunteer_home"
+        android:name="com.turahan.dev.volunteer.VolunteerHomeFragment"
+        android:label="fragment_volunteer_home"
+        tools:layout="@layout/fragment_volunteer_home" >
+        <action
+            android:id="@+id/action_fragment_volunteer_home_to_fragment_volunteer_cash_donation"
+            app:destination="@id/fragment_volunteer_cash_donation" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_volunteer_cash_donation"
+        android:name="com.turahan.dev.volunteer.VolCashDonationFragment"
+        android:label="fragment_volunteer_cash_donation"
+        tools:layout="@layout/fragment_vol_cash_donation" >
+        <action
+            android:id="@+id/action_fragment_volunteer_cash_donation_to_fragment_volunteer_profile"
+            app:destination="@id/fragment_volunteer_profile" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_volunteer_profile"
+        android:name="com.turahan.dev.volunteer.VolunteerProfileFragment"
+        android:label="fragment_volunteer_profile"
+        tools:layout="@layout/fragment_volunteer_profile" >
+    </fragment>
+
+</navigation>

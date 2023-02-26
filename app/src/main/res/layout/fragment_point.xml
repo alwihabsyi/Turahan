@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".user.PointFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="50dp">
+
+        <TextView
+            android:id="@+id/pointappbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="POINTS"
+            android:textColor="#B83B3B"
+            android:textSize="20sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/pointappbar"
+            android:layout_marginTop="13dp"
+            android:background="#EDEDED"
+            android:elevation="1dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/pointappbar"
+            android:layout_marginTop="40dp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvProfil"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                app:strokeWidth="1.5dp"
+                app:strokeColor="#B83B3B"
+                app:cardCornerRadius="100dp"
+                android:layout_centerHorizontal="true">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/ivProfil"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/baseline_person_24" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/tv_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cvProfil"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/montserrat_semibold"
+                android:text="@string/username"
+                android:textColor="#B83B3B"
+                android:textSize="24sp" />
+
+            <RelativeLayout
+                android:id="@+id/rvPoints"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_username"
+                android:layout_centerHorizontal="true">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/coinicon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_toEndOf="@id/pointsstv"
+                    android:src="@drawable/coinicon" />
+
+                <TextView
+                    android:id="@+id/tv_points"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/montserrat"
+                    android:text="0"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/pointsstv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:layout_toEndOf="@id/tv_points"
+                    android:fontFamily="@font/montserrat"
+                    android:text="Points"
+                    android:textSize="17sp" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tvClaimYR"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rvPoints"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Claim your points"
+                android:textSize="18sp" />
+
+            <Spinner
+                android:id="@+id/pointSpinner"
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:layout_below="@id/tvClaimYR"
+                android:layout_alignStart="@id/tvClaimYR"
+                android:spinnerMode="dropdown" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvPoin1"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_below="@id/pointSpinner"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="20dp"
+                android:foreground="@drawable/kuotafg">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/ivKuota"
+                        android:layout_width="match_parent"
+                        android:layout_height="130dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/kuotapic" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_below="@id/ivKuota"
+                        android:background="#000000" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/ivKuota"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="@font/montserrat"
+                            android:text="Kuota Internet 8GB"
+                            android:textSize="17sp" />
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/koinicon"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="5dp"
+                            android:src="@drawable/coinicon" />
+
+                        <TextView
+                            android:id="@+id/poin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="5dp"
+                            android:layout_toStartOf="@id/koinicon"
+                            android:fontFamily="@font/montserrat"
+                            android:text="800"
+                            android:textSize="17sp" />
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvPoin2"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_below="@id/cvPoin1"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="20dp"
+                android:foreground="@drawable/kuotafg">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/ivKuota2"
+                        android:layout_width="match_parent"
+                        android:layout_height="130dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/kuotapic" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_below="@id/ivKuota2"
+                        android:background="#000000" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/ivKuota2"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="@font/montserrat"
+                            android:text="Kuota Internet 16GB"
+                            android:textSize="17sp" />
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/koinicon2"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="5dp"
+                            android:src="@drawable/coinicon" />
+
+                        <TextView
+                            android:id="@+id/poin2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="5dp"
+                            android:layout_toStartOf="@id/koinicon2"
+                            android:fontFamily="@font/montserrat"
+                            android:text="1600"
+                            android:textSize="17sp" />
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvPoin3"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_below="@id/cvPoin2"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="20dp"
+                android:foreground="@drawable/kuotafg">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/ivKuota3"
+                        android:layout_width="match_parent"
+                        android:layout_height="130dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/kuotapic" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_below="@id/ivKuota3"
+                        android:background="#000000" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/ivKuota3"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="@font/montserrat"
+                            android:text="Kuota Internet 32GB"
+                            android:textSize="17sp" />
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/koinicon3"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="5dp"
+                            android:src="@drawable/coinicon" />
+
+                        <TextView
+                            android:id="@+id/poin3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="5dp"
+                            android:layout_toStartOf="@id/koinicon3"
+                            android:fontFamily="@font/montserrat"
+                            android:text="3200"
+                            android:textSize="17sp" />
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</ScrollView>

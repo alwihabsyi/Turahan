@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".user.MainActivity">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/vol_nav_host_fragment_container"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:isScrollContainer="true"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/botNavView"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/volunteer_nav_main" />
+
+    <me.ibrahimsn.lib.SmoothBottomBar
+        android:id="@+id/botNavView"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:contentDescription="@string/bottombar"
+        app:backgroundColor="#F6F6F6"
+        app:cornerRadius="30dp"
+        app:corners="all"
+        app:iconSize="25sp"
+        app:iconTint="#BCBCBC"
+        app:iconTintActive="#C03E3E"
+        app:indicatorColor="#00000000"
+        app:indicatorRadius="16dp"
+        app:itemFontFamily="@font/righteous"
+        app:itemPadding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/volunteer_menu_bottom"
+        app:sideMargins="10dp"
+        app:textColor="#C03E3E"
+        app:textSize="16sp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

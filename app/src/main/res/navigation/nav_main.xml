@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/fragment_home">
+
+    <fragment
+        android:id="@+id/fragment_home"
+        android:name="com.turahan.dev.user.HomeFragment"
+        android:label="fragment_first"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_fragment_home_to_fragment_point"
+            app:destination="@id/fragment_profile" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_point"
+        android:name="com.turahan.dev.user.PointFragment"
+        android:label="fragment_first"
+        tools:layout="@layout/fragment_point" >
+        <action
+            android:id="@+id/action_fragment_point_to_fragment_profile"
+            app:destination="@id/fragment_profile" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_profile"
+        android:name="com.turahan.dev.user.ProfileFragment"
+        android:label="fragment_first"
+        tools:layout="@layout/fragment_profile" >
+    </fragment>
+
+</navigation>

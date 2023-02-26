@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">Turahan</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="bottombar">bottombar</string>
+    <string name="appname">TURAHAN</string>
+    <string name="username">Username</string>
+
+    <!--  Titles  -->
+    <string name="first_slide_title">Pickup Donation</string>
+    <string name="second_slide_title">Drop Off Donation</string>
+    <string name="third_slide_title">Get Points</string>
+    <!--  Description  -->
+    <string name="first_slide_description">Sharing food is easier by waiting for the courier to come to your house</string>
+    <string name="second_slide_description">You can share food by visiting some of our drop points</string>
+    <string name="third_slide_description">Earn points after making a donation and get a reward</string>
+
+    <!--Buttons-->
+    <string name="skip_btn">Skip</string>
+    <string name="next_btn">Next</string>
+    <string name="let_get_started">Lets Get Started</string>
+    <string name="sign_in_to_your_account">Masuk ke akun anda</string>
+    <string name="email_address">Alamat Email</string>
+    <string name="password">Password</string>
+    <string name="google">Google</string>
+    <string name="or_sign_in_with">atau masuk dengan</string>
+    <string name="create_an_account">Buat Akun</string>
+    <string name="confirm_password">Konfirmasi Password</string>
+    <string name="or_sign_up_with">atau masuk dengan</string>
+    <string name="sign_up">Daftar</string>
+    <string name="isi_field">Harap isi semua field</string>
+    <string name="pwSalah">Password tidak sama</string>
+    <string name="suSucceed">Berhasil Buat Akun, Silahkan Login</string>
+
+    <string-array name="spinnerarray">
+        <item>All Reward</item>
+        <item>E-Voucher</item>
+        <item>Merchandise</item>
+    </string-array>
+</resources>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_marginBottom="5dp"
+    app:cardBackgroundColor="#00FFFFFF"
+    app:cardCornerRadius="15dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/ivArtikel"
+            android:layout_width="110dp"
+            android:layout_height="70dp"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/articlebg"
+            android:clipToOutline="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/poster_one" />
+
+        <TextView
+            android:id="@+id/tv_judulartikel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="13dp"
+            android:layout_toEndOf="@id/ivArtikel"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="How to recycle plastic waste"
+            android:textSize="18sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_judulartikel"
+            android:layout_toEndOf="@id/ivArtikel">
+
+            <TextView
+                android:id="@+id/donationDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12-02-2023"/>
+
+            <ImageView
+                android:id="@+id/dottt"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_marginTop="-2dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="5dp"
+                android:layout_toEndOf="@id/donationDate"
+                android:src="@drawable/circleicon"/>
+
+            <TextView
+                android:id="@+id/donationCategory"
+                android:layout_width="wrap_content"
+                android:layout_toEndOf="@id/dottt"
+                android:layout_marginStart="5dp"
+                android:layout_height="wrap_content"
+                android:text="Eatable"/>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="70dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                app:cardBackgroundColor="#9403A9F4">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Pending"
+                    android:fontFamily="@font/righteous"
+                    android:textSize="10sp"/>
+
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
