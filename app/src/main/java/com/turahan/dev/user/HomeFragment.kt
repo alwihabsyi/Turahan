@@ -105,7 +105,9 @@ class HomeFragment : Fragment() {
             database.child(auth.currentUser!!.uid).get().addOnSuccessListener {
                 if(it.exists()){
                     val tvuser = it.child("uname").value.toString()
+                    val poin = it.child("totalPoin").value.toString()
                     binding.tvUsername.text = tvuser
+                    binding.tvPoints.text = poin
                 }
             }
             val profil = binding.ivProfil

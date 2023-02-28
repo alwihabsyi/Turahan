@@ -44,6 +44,11 @@ class DonationHistory : AppCompatActivity() {
                         if (auth.currentUser?.uid == items?.idUser)
                             userArrayList.add(items!!)
                     }
+                    if(userArrayList.isEmpty()){
+                        binding.tvNoTransaction.text = "Tidak Ada Transaksi"
+                    }else{
+                        binding.tvNoTransaction.text = null
+                    }
                     userRecyclerView.adapter = DonationHistoryAdapter(userArrayList)
                 }
             }

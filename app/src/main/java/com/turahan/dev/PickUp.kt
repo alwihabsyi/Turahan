@@ -48,6 +48,10 @@ class PickUp : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.pickLocButton2.setOnClickListener {
+            startActivity(Intent(this, PickLocation::class.java))
+        }
+
         binding.pickLocButton.setOnClickListener {
             val judulDonasi = binding.etJudulDonasi.text
             val radioButtonEat = binding.eatableRadioButton

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" >
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application
         android:allowBackup="true"
@@ -10,7 +14,16 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.Turahan"
-        tools:targetApi="31" >
+        tools:targetApi="31">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAil-n4ewBbUs_ImKJuURkJR5Fc6XSWfG8"/>
+
+        <activity
+            android:name=".PickLocation"
+            android:exported="false"
+            android:theme="@style/Theme.Turahan.NoActionBarAndStatusBar"  />
         <activity
             android:name=".ChangeProfileActivity"
             android:exported="false"
@@ -34,7 +47,7 @@
         <activity
             android:name=".sign.FirstTimerActivity"
             android:exported="true"
-            android:theme="@style/Theme.Turahan.NoActionBarAndStatusBar" >
+            android:theme="@style/Theme.Turahan.NoActionBarAndStatusBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

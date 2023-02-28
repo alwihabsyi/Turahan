@@ -175,4 +175,18 @@
         app:layout_constraintTop_toBottomOf="@+id/materialCardView"
         app:layout_constraintVertical_bias="0.327" />
 
+    <Button
+        android:id="@+id/pickLocButton2"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/purple_500"
+        android:text="Pick Location"
+        app:cornerRadius="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialCardView"
+        app:layout_constraintVertical_bias="0.327" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
