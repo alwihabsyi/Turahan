@@ -11,9 +11,6 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
-import com.turahan.dev.data.DataDonasiMakanan
 import com.turahan.dev.databinding.ActivityPickUpBinding
 import com.turahan.dev.user.MainActivity
 import java.text.SimpleDateFormat
@@ -22,10 +19,8 @@ import java.util.*
 class PickUp : AppCompatActivity() {
 
     private lateinit var binding: ActivityPickUpBinding
-    private lateinit var databaseUser: DatabaseReference
-    private lateinit var storageRef: StorageReference
+    private lateinit var databaseDonasi: DatabaseReference
     private lateinit var auth: FirebaseAuth
-    private var link: String = ""
     var currentFile: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +28,7 @@ class PickUp : AppCompatActivity() {
         binding = ActivityPickUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = Firebase.auth
-        databaseUser =
+        databaseDonasi =
             FirebaseDatabase.getInstance().getReference("DonasiMakanan")
 
         binding.fotoMakanan.setOnClickListener {
@@ -47,20 +42,14 @@ class PickUp : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
-
-        binding.pickLocButton2.setOnClickListener {
-            startActivity(Intent(this, PickLocation::class.java))
-        }
-
         binding.pickLocButton.setOnClickListener {
             val judulDonasi = binding.etJudulDonasi.text
             val radioButtonEat = binding.eatableRadioButton
             val radioButtonUneat = binding.uneatableRadioButton
-            val foto = binding.fotoMakanan
             var kategoriDonasi = " "
             val date = Calendar.getInstance().time
-            val tanggalDonasi = date.toString("yyyy/MM/dd HH:mm:ss")
-            var id = "${auth.currentUser?.displayName}${getRandomString(5)}"
+            val tanggalDonasi = date.toString("yyyy/MM/dd HH:mm")
+            val id = "${auth.currentUser?.displayName}${getRandomString(5)}"
 
             if (judulDonasi.isEmpty()) {
                 Toast.makeText(this, "Harap Isi Semua Field", Toast.LENGTH_SHORT).show()
@@ -72,70 +61,16 @@ class PickUp : AppCompatActivity() {
                 kategoriDonasi = "Tidak layak makan"
             }
 
-            databaseUser.child("idDonasi").get().addOnSuccessListener {
-                val idDonasiuser = it.child("idDonasi").value.toString()
-                if (idDonasiuser == id) {
-                    id = "${auth.currentUser?.displayName}+${getRandomString(5)}"
-                }
-                val donasiUser = DataDonasiMakanan(
-                    "${auth.currentUser?.uid}",
-                    id,
-                    judulDonasi.toString(),
-                    "Alamat",
-                    tanggalDonasi,
-                    kategoriDonasi,
-                    "Pending"
-                )
-
-                databaseUser.child(id).setValue(donasiUser).addOnSuccessListener {
-                    Toast.makeText(this, "Sukses Upload", Toast.LENGTH_SHORT).show()
-                    uploadDonationImage(id)
-                }.addOnFailureListener {
-                    Toast.makeText(this, it.localizedMessage, Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-    }
-
-    private fun uploadDonationImage(id: String) {
-        storageRef = FirebaseStorage.getInstance().getReference("donationImages/" + id)
-        storageRef.putFile(currentFile!!).addOnSuccessListener {
-
-            it.metadata!!.reference!!.downloadUrl
-                .addOnSuccessListener {
-                    val mapImage = it
-
-                    databaseUser = FirebaseDatabase.getInstance().getReference("DonasiMakanan")
-                    databaseUser.child(id).get().addOnSuccessListener {
-                        val idUser = it.child("idUser").value.toString()
-                        val idDonasi = it.child("idDonasi").value.toString()
-                        val judulDonasi = it.child("judulDonasi").value.toString()
-                        val alamatDonasi = it.child("alamatDonasi").value.toString()
-                        val kategoriDonasi = it.child("kategoriDonasi").value.toString()
-                        val statusDonasi = it.child("statusDonasi").value.toString()
-                        val tanggalDonasi = it.child("tanggalDonasi").value.toString()
-
-                        val donasiUser = DataDonasiMakanan(
-                            idUser,
-                            idDonasi,
-                            judulDonasi,
-                            alamatDonasi,
-                            tanggalDonasi,
-                            kategoriDonasi,
-                            statusDonasi,
-                            "${mapImage}"
-                        )
-
-                        databaseUser.child(id).setValue(donasiUser).addOnSuccessListener {
-                            Toast.makeText(this, "Sukses Upload", Toast.LENGTH_SHORT).show()
-                        }.addOnFailureListener {
-                            Toast.makeText(this, it.localizedMessage, Toast.LENGTH_SHORT).show()
-                        }
-
-                    }
-                }
-        }.addOnFailureListener {
-            Toast.makeText(this, it.localizedMessage, Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, PickLocation::class.java).apply {
+                putExtra("idUser","${auth.currentUser?.uid}")
+                putExtra("idDonasi",id)
+                putExtra("judulDonasi",judulDonasi.toString())
+                putExtra("alamatDonasi"," ")
+                putExtra("tanggalDonasi",tanggalDonasi)
+                putExtra("kategoriDonasi",kategoriDonasi)
+                putExtra("statusDonasi","Pending")
+                putExtra("fotoDonasi",currentFile.toString())
+            })
         }
     }
 

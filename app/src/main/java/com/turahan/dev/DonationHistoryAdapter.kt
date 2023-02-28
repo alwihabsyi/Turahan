@@ -38,7 +38,7 @@ class DonationHistoryAdapter(private val dataset: ArrayList<DataDonasiMakanan>) 
                 .into(fotoDonasi)
             judulDonasi.text = data.judulDonasi
             tanggalDonasi.text = data.tanggalDonasi
-            kategoriDonasi.text = data.kategoriDonasi
+            kategoriDonasi.text = data.dropOffPickUp
             statusDonasi.text = data.statusDonasi
         }
     }

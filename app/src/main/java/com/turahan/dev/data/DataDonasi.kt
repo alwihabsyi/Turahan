@@ -8,7 +8,8 @@ data class DataDonasiMakanan(
     val tanggalDonasi: String? = null,
     val kategoriDonasi: String? = null,
     val statusDonasi: String? = null,
-    val fotoDonasi: String? = null
+    val fotoDonasi: String? = null,
+    val dropOffPickUp: String? = null
 )
 
 data class DataDonasiUang(

@@ -1,90 +1,75 @@
 package com.turahan.dev
 
-import android.app.Activity
-import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.turahan.dev.data.DataDonasiMakanan
-import com.turahan.dev.databinding.ActivityDropOffBinding
-import com.turahan.dev.user.MainActivity
-import java.text.SimpleDateFormat
-import java.util.*
+import com.turahan.dev.data.DataUser
+import com.turahan.dev.databinding.ActivityCustomAdressBinding
 
-class DropOff : AppCompatActivity() {
+class CustomAdressActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityDropOffBinding
+    private lateinit var binding: ActivityCustomAdressBinding
     private lateinit var databaseDonasi: DatabaseReference
+    private lateinit var databaseUser: DatabaseReference
     private lateinit var storageRef: StorageReference
     private lateinit var auth: FirebaseAuth
     var currentFile: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityDropOffBinding.inflate(layoutInflater)
+        binding = ActivityCustomAdressBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = Firebase.auth
-        databaseDonasi =
-            FirebaseDatabase.getInstance().getReference("DonasiMakanan")
+        databaseUser = FirebaseDatabase.getInstance().getReference("User")
+        databaseDonasi = FirebaseDatabase.getInstance().getReference("DonasiMakanan")
 
-        binding.ivImage2.setOnClickListener {
-            Intent(Intent.ACTION_GET_CONTENT).also {
-                it.type = "image/*"
-                startActivityForResult(it, Constants.REQUEST_CODE_IMAGE_PICK)
+        binding.cbDefaultAddress.setOnClickListener {
+            databaseUser.child(auth.currentUser!!.uid).get().addOnSuccessListener {
+                val alamat = it.child("alamat").value.toString()
+                if(binding.cbDefaultAddress.isChecked){
+                    binding.etAlamat.setText(alamat)
+                }else{
+                    binding.etAlamat.text = null
+                }
             }
         }
 
-        binding.backButtonDropOff.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
+        val idUser = intent.getStringExtra("idUser")
+        var idDonasi = intent.getStringExtra("idDonasi")
+        val judulDonasi = intent.getStringExtra("judulDonasi")
+        val tanggalDonasi = intent.getStringExtra("tanggalDonasi")
+        val kategoriDonasi = intent.getStringExtra("kategoriDonasi")
+        val statusDonasi = intent.getStringExtra("statusDonasi")
+        val alamatDonasi = "${binding.etAlamat.text} , ${binding.etDetailAlamat} , ${binding.etJudulAlamat}"
+        currentFile = Uri.parse(intent.getStringExtra("fotoDonasi"))
 
-        binding.dropOffButton.setOnClickListener {
-            val judulDonasi = binding.etJudulDonasi.text
-            val radioButtonEat = binding.eatableRadioButton
-            val radioButtonUneat = binding.uneatableRadioButton
-            var kategoriDonasi = " "
-            val date = Calendar.getInstance().time
-            val tanggalDonasi = date.toString("yyyy/MM/dd HH:mm")
-            var id = "${auth.currentUser?.displayName}${getRandomString(5)}"
-
-            if (judulDonasi.isEmpty()) {
-                Toast.makeText(this, "Harap Isi Semua Field", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-            if (radioButtonEat.isChecked) {
-                kategoriDonasi = "Layak Makan"
-            } else if (radioButtonUneat.isChecked) {
-                kategoriDonasi = "Tidak layak makan"
-            }
-
-            databaseDonasi.child("idDonasi").get().addOnSuccessListener {
+        binding.btnDonateNow.setOnClickListener {
+            databaseUser.child("idDonasi").get().addOnSuccessListener {
                 val idDonasiuser = it.child("idDonasi").value.toString()
-                if (idDonasiuser == id) {
-                    id = "${auth.currentUser?.displayName}+${getRandomString(5)}"
+                if (idDonasiuser == idDonasi) {
+                    idDonasi = "${auth.currentUser?.displayName}+${getRandomString(5)}"
                 }
                 val donasiUser = DataDonasiMakanan(
-                    auth.currentUser!!.uid,
-                    id,
-                    judulDonasi.toString(),
-                    binding.textView7.text.toString(),
+                    idUser,
+                    idDonasi,
+                    judulDonasi,
+                    alamatDonasi,
                     tanggalDonasi,
                     kategoriDonasi,
-                    "Pending",
-                    " ",
-                    "Drop Off"
+                    statusDonasi,
+                    "Pending"
                 )
 
-                databaseDonasi.child(id!!).setValue(donasiUser).addOnSuccessListener {
-                    uploadDonationImage(id!!)
+                databaseDonasi.child(idDonasi!!).setValue(donasiUser).addOnSuccessListener {
+                    uploadDonationImage(idDonasi!!)
                 }.addOnFailureListener {
                     Toast.makeText(this, it.localizedMessage, Toast.LENGTH_SHORT).show()
                 }
@@ -109,7 +94,6 @@ class DropOff : AppCompatActivity() {
                         val kategoriDonasi = it.child("kategoriDonasi").value.toString()
                         val statusDonasi = it.child("statusDonasi").value.toString()
                         val tanggalDonasi = it.child("tanggalDonasi").value.toString()
-                        val dropOffPickup = it.child("dropOffPickUp").value.toString()
 
                         val donasiUser = DataDonasiMakanan(
                             idUser,
@@ -119,8 +103,7 @@ class DropOff : AppCompatActivity() {
                             tanggalDonasi,
                             kategoriDonasi,
                             statusDonasi,
-                            "${mapImage}",
-                            dropOffPickup
+                            "${mapImage}"
                         )
 
                         databaseDonasi.child(id).setValue(donasiUser).addOnSuccessListener {
@@ -136,27 +119,10 @@ class DropOff : AppCompatActivity() {
         }
     }
 
-
-    fun Date.toString(format: String, locale: Locale = Locale.getDefault()): String {
-        val formatter = SimpleDateFormat(format, locale)
-        return formatter.format(this)
-    }
-
     fun getRandomString(length: Int): String {
         val allowedChars = ('A'..'Z') + ('a'..'z') + ('0'..'9')
         return (1..length)
             .map { allowedChars.random() }
             .joinToString("")
-    }
-
-    @Deprecated("Deprecated in Java")
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK && requestCode == Constants.REQUEST_CODE_IMAGE_PICK) {
-            data?.data?.let {
-                currentFile = it
-                binding.ivImage2.setImageURI(it)
-            }
-        }
     }
 }

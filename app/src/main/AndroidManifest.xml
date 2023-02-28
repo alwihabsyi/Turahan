@@ -2,9 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -18,12 +18,17 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAil-n4ewBbUs_ImKJuURkJR5Fc6XSWfG8"/>
+            android:value="AIzaSyAil-n4ewBbUs_ImKJuURkJR5Fc6XSWfG8" />
+
+        <activity
+            android:name=".CustomAdressActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Turahan.NoActionBarAndStatusBar"  />
 
         <activity
             android:name=".PickLocation"
             android:exported="false"
-            android:theme="@style/Theme.Turahan.NoActionBarAndStatusBar"  />
+            android:theme="@style/Theme.Turahan.NoActionBarAndStatusBar" />
         <activity
             android:name=".ChangeProfileActivity"
             android:exported="false"

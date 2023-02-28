@@ -2,10 +2,12 @@ package com.turahan.dev
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -23,6 +25,15 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import com.turahan.dev.data.DataDonasiMakanan
+import com.turahan.dev.databinding.ActivityPickLocationBinding
 import java.util.*
 
 class PickLocation : AppCompatActivity(),OnMapReadyCallback,
@@ -31,6 +42,7 @@ class PickLocation : AppCompatActivity(),OnMapReadyCallback,
     GoogleMap.OnMyLocationClickListener,
     GoogleMap.OnMarkerDragListener {
 
+    private lateinit var binding: ActivityPickLocationBinding
     private lateinit var geoCoder: Geocoder
     private lateinit var addresses: List<Address>
     private lateinit var tvDetailAddress: TextView
@@ -42,14 +54,18 @@ class PickLocation : AppCompatActivity(),OnMapReadyCallback,
     private lateinit var loader: ProgressBar
     private val permissionCode = 101
 
+    private lateinit var databaseUser: DatabaseReference
+    private lateinit var storageRef: StorageReference
+    private lateinit var auth: FirebaseAuth
+    var currentFile: Uri? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_pick_location)
-
-        val btnAlamatLain = findViewById<CardView>(R.id.btn_alamat_lain)
-        btnAlamatLain.setOnClickListener {
-            CustomAddressFragment().show(supportFragmentManager, "sign up fragment")
-        }
+        binding = ActivityPickLocationBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        auth = Firebase.auth
+        databaseUser = FirebaseDatabase.getInstance().getReference("DonasiMakanan")
+        currentFile = Uri.EMPTY
 
         tvDetailAddress = findViewById(R.id.tv_detail_alamat)
         loader = findViewById(R.id.progress_bar)
@@ -70,6 +86,113 @@ class PickLocation : AppCompatActivity(),OnMapReadyCallback,
             loader.visibility = View.VISIBLE
             getCurrentLocation()
         }
+
+        binding.btnBack.setOnClickListener {
+            startActivity(Intent(this, PickUp::class.java))
+        }
+
+        //Intent Extra dari Activity Pickup
+        val idUser = intent.getStringExtra("idUser")
+        var idDonasi = intent.getStringExtra("idDonasi")
+        val judulDonasi = intent.getStringExtra("judulDonasi")
+        val tanggalDonasi = intent.getStringExtra("tanggalDonasi")
+        val kategoriDonasi = intent.getStringExtra("kategoriDonasi")
+        val statusDonasi = intent.getStringExtra("statusDonasi")
+        currentFile = Uri.parse(intent.getStringExtra("fotoDonasi"))
+
+        binding.btnDonateNow.setOnClickListener {
+            val alamatDonasi = tvDetailAddress.text.toString()
+
+            databaseUser.child("idDonasi").get().addOnSuccessListener {
+                val idDonasiuser = it.child("idDonasi").value.toString()
+                if (idDonasiuser == idDonasi) {
+                    idDonasi = "${auth.currentUser?.displayName}+${getRandomString(5)}"
+                }
+                val donasiUser = DataDonasiMakanan(
+                    idUser,
+                    idDonasi,
+                    judulDonasi,
+                    alamatDonasi,
+                    tanggalDonasi,
+                    kategoriDonasi,
+                    statusDonasi,
+                    " ",
+                    "Pick Up"
+                )
+
+                databaseUser.child(idDonasi!!).setValue(donasiUser).addOnSuccessListener {
+                    uploadDonationImage(idDonasi!!)
+                }.addOnFailureListener {
+                    Toast.makeText(this, it.localizedMessage, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+        binding.btnAlamatLain.setOnClickListener {
+
+            startActivity(Intent(this, CustomAdressActivity::class.java).apply {
+                putExtra("idUser","${auth.currentUser?.uid}")
+                putExtra("idDonasi",idDonasi)
+                putExtra("judulDonasi",judulDonasi)
+                putExtra("alamatDonasi"," ")
+                putExtra("tanggalDonasi",tanggalDonasi)
+                putExtra("kategoriDonasi",kategoriDonasi)
+                putExtra("statusDonasi",statusDonasi)
+                putExtra("fotoDonasi",currentFile.toString())
+            })
+        }
+
+    }
+
+    private fun uploadDonationImage(id: String) {
+        storageRef = FirebaseStorage.getInstance().getReference("donationImages/" + id)
+        storageRef.putFile(currentFile!!).addOnSuccessListener {
+
+            it.metadata!!.reference!!.downloadUrl
+                .addOnSuccessListener {
+                    val mapImage = it
+
+                    databaseUser = FirebaseDatabase.getInstance().getReference("DonasiMakanan")
+                    databaseUser.child(id).get().addOnSuccessListener {
+                        val idUser = it.child("idUser").value.toString()
+                        val idDonasi = it.child("idDonasi").value.toString()
+                        val judulDonasi = it.child("judulDonasi").value.toString()
+                        val alamatDonasi = it.child("alamatDonasi").value.toString()
+                        val kategoriDonasi = it.child("kategoriDonasi").value.toString()
+                        val statusDonasi = it.child("statusDonasi").value.toString()
+                        val tanggalDonasi = it.child("tanggalDonasi").value.toString()
+                        val dropOffPickup = it.child("dropOffPickUp").value.toString()
+
+                        val donasiUser = DataDonasiMakanan(
+                            idUser,
+                            idDonasi,
+                            judulDonasi,
+                            alamatDonasi,
+                            tanggalDonasi,
+                            kategoriDonasi,
+                            statusDonasi,
+                            "${mapImage}",
+                            dropOffPickup
+                        )
+
+                        databaseUser.child(id).setValue(donasiUser).addOnSuccessListener {
+                            Toast.makeText(this, "Sukses Upload", Toast.LENGTH_SHORT).show()
+                        }.addOnFailureListener {
+                            Toast.makeText(this, it.localizedMessage, Toast.LENGTH_SHORT).show()
+                        }
+
+                    }
+                }
+        }.addOnFailureListener {
+            Toast.makeText(this, it.localizedMessage, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    fun getRandomString(length: Int): String {
+        val allowedChars = ('A'..'Z') + ('a'..'z') + ('0'..'9')
+        return (1..length)
+            .map { allowedChars.random() }
+            .joinToString("")
     }
 
     private fun changeLocationText() {

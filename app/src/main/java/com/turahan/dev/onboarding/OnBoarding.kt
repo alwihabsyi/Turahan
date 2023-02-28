@@ -54,6 +54,7 @@ class OnBoarding : AppCompatActivity() {
                 val intent = Intent(this@OnBoarding, LoginActivity::class.java)
                 startActivity(intent)
                 onBoardingFinished()
+                finish()
             }
         }
 
