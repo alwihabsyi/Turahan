@@ -146,14 +146,14 @@ class SignUpFragment : BottomSheetDialogFragment() {
         database.child(user!!.uid).get().addOnSuccessListener {
             if(it.exists()){
                 val intent = Intent(context, MainActivity::class.java)
-                intent.putExtra(SignUpFragment.EXTRA_NAME, user.displayName)
+                intent.putExtra(EXTRA_NAME, user.displayName)
                 startActivity(intent)
                 activity?.finish()
             }else{
                 val datauser = DataUser(user.uid, user.displayName, " ", "0", "0", "0")
                 database.child(user.uid).setValue(datauser)
                 val intent = Intent(context, MainActivity::class.java)
-                intent.putExtra(SignUpFragment.EXTRA_NAME, user.displayName)
+                intent.putExtra(EXTRA_NAME, user.displayName)
                 startActivity(intent)
                 activity?.finish()
             }
