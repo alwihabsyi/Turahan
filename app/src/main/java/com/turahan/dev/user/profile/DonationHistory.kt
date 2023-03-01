@@ -1,5 +1,6 @@
 package com.turahan.dev.user.profile
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,6 +12,7 @@ import com.google.firebase.ktx.Firebase
 import com.turahan.dev.DonationHistoryAdapter
 import com.turahan.dev.data.DataDonasiMakanan
 import com.turahan.dev.databinding.ActivityDonationHistoryBinding
+import com.turahan.dev.user.MainActivity
 
 class DonationHistory : AppCompatActivity() {
 
@@ -49,7 +51,12 @@ class DonationHistory : AppCompatActivity() {
                     }else{
                         binding.tvNoTransaction.text = null
                     }
-                    userRecyclerView.adapter = DonationHistoryAdapter(userArrayList)
+                    userRecyclerView.adapter = DonationHistoryAdapter(userArrayList) {
+                        Intent(baseContext, MainActivity::class.java).apply {
+                            putExtra("user", it)
+                            startActivity(this)
+                        }
+                    }
                 }
             }
 

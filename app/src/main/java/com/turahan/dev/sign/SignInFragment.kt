@@ -19,6 +19,8 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.getValue
+import com.google.firebase.database.ktx.snapshots
 import com.google.firebase.ktx.Firebase
 import com.turahan.dev.R
 import com.turahan.dev.data.DataUser
@@ -38,7 +40,6 @@ class SignInFragment : BottomSheetDialogFragment() {
     ): View {
         binding = FragmentSignInBinding.inflate(layoutInflater)
         return binding.root
-        auth = Firebase.auth
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -112,6 +113,7 @@ class SignInFragment : BottomSheetDialogFragment() {
     }
 
     private fun firebaseAuthWithGoogle(idToken: String) {
+        database = FirebaseDatabase.getInstance().getReference("idTokenUser")
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential)
             .addOnCompleteListener {
@@ -127,9 +129,21 @@ class SignInFragment : BottomSheetDialogFragment() {
     }
 
     private fun updateUI(user: FirebaseUser?) {
-        val intent = Intent(context, MainActivity::class.java)
-        intent.putExtra(SignUpFragment.EXTRA_NAME, user?.displayName)
-        startActivity(intent)
-        activity?.finish()
+        database = FirebaseDatabase.getInstance().getReference("User")
+        database.child(user!!.uid).get().addOnSuccessListener {
+            if(it.exists()){
+                val intent = Intent(context, MainActivity::class.java)
+                intent.putExtra(SignUpFragment.EXTRA_NAME, user.displayName)
+                startActivity(intent)
+                activity?.finish()
+            }else{
+                val datauser = DataUser(user.uid, user.displayName, " ", "0", "0", "0")
+                database.child(user.uid).setValue(datauser)
+                val intent = Intent(context, MainActivity::class.java)
+                intent.putExtra(SignUpFragment.EXTRA_NAME, user.displayName)
+                startActivity(intent)
+                activity?.finish()
+            }
+        }
     }
 }

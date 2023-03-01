@@ -1,5 +1,9 @@
 package com.turahan.dev.data
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class DataDonasiMakanan(
     val idUser: String? = null,
     val idDonasi: String? = null,
@@ -10,7 +14,7 @@ data class DataDonasiMakanan(
     val statusDonasi: String? = null,
     val fotoDonasi: String? = null,
     val dropOffPickUp: String? = null
-)
+): Parcelable
 
 data class DataDonasiUang(
     val idUser: String? = null,

@@ -9,12 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import com.turahan.dev.data.DataDonasiMakanan
 
-class DonationHistoryAdapter(private val dataset: ArrayList<DataDonasiMakanan>) :
+class DonationHistoryAdapter(private val dataset: ArrayList<DataDonasiMakanan>, val eventHandling: (DataDonasiMakanan) -> Unit) :
     RecyclerView.Adapter<DonationHistoryAdapter.DonationViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DonationViewHolder {
         return DonationViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.rv_volunteer,parent,false)
+            LayoutInflater.from(parent.context).inflate(R.layout.rv_volunteer,parent,false), eventHandling
         )
     }
 
@@ -24,7 +24,7 @@ class DonationHistoryAdapter(private val dataset: ArrayList<DataDonasiMakanan>) 
         holder.onBindView(dataset[position])
     }
 
-    inner class DonationViewHolder(view: View): RecyclerView.ViewHolder(view){
+    inner class DonationViewHolder(view: View, val eventHandling: (DataDonasiMakanan) -> Unit): RecyclerView.ViewHolder(view){
         val fotoDonasi = view.findViewById<ImageView>(R.id.ivDonasi)
         val judulDonasi = view.findViewById<TextView>(R.id.tvJudulDonasi)
         val tanggalDonasi = view.findViewById<TextView>(R.id.tvTanggalDonasi)
@@ -40,6 +40,8 @@ class DonationHistoryAdapter(private val dataset: ArrayList<DataDonasiMakanan>) 
             tanggalDonasi.text = data.tanggalDonasi
             kategoriDonasi.text = data.dropOffPickUp
             statusDonasi.text = data.statusDonasi
+
+            itemView.setOnClickListener { eventHandling(data) }
         }
     }
 }

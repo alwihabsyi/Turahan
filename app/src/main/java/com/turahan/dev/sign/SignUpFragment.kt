@@ -143,11 +143,20 @@ class SignUpFragment : BottomSheetDialogFragment() {
 
     private fun updateUI(user: FirebaseUser?) {
         database = FirebaseDatabase.getInstance().getReference("User")
-        val datauser = DataUser(user!!.uid, user.displayName, " ", "0")
-        database.child(user.uid).setValue(datauser)
-        val intent = Intent(context, MainActivity::class.java)
-        intent.putExtra(SignUpFragment.EXTRA_NAME, user.displayName)
-        startActivity(intent)
-        activity?.finish()
+        database.child(user!!.uid).get().addOnSuccessListener {
+            if(it.exists()){
+                val intent = Intent(context, MainActivity::class.java)
+                intent.putExtra(SignUpFragment.EXTRA_NAME, user.displayName)
+                startActivity(intent)
+                activity?.finish()
+            }else{
+                val datauser = DataUser(user.uid, user.displayName, " ", "0", "0", "0")
+                database.child(user.uid).setValue(datauser)
+                val intent = Intent(context, MainActivity::class.java)
+                intent.putExtra(SignUpFragment.EXTRA_NAME, user.displayName)
+                startActivity(intent)
+                activity?.finish()
+            }
+        }
     }
 }
