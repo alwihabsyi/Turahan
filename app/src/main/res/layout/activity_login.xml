@@ -69,9 +69,9 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
-        android:textAlignment="center"
         android:fontFamily="@font/montserrat"
-        android:text="Why wasted when there are still many in need?"
+        android:text="Why waste when there are still many in need?"
+        android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="16dp" />
 
@@ -129,7 +129,7 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/tv_login_volunteer"
+        android:id="@+id/btnLoginVolunteer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

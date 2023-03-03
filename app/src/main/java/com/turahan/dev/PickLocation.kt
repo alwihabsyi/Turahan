@@ -98,10 +98,11 @@ class PickLocation : AppCompatActivity(),OnMapReadyCallback,
         val tanggalDonasi = intent.getStringExtra("tanggalDonasi")
         val kategoriDonasi = intent.getStringExtra("kategoriDonasi")
         val statusDonasi = intent.getStringExtra("statusDonasi")
-        currentFile = Uri.parse(intent.getStringExtra("fotoDonasi"))
+        val alamatDonasi = tvDetailAddress.text.toString()
+        binding.tvPerantara.text = intent.getStringExtra("fotoDonasi")
+        currentFile = Uri.parse(binding.tvPerantara.text.toString())
 
         binding.btnDonateNow.setOnClickListener {
-            val alamatDonasi = tvDetailAddress.text.toString()
 
             databaseUser.child("idDonasi").get().addOnSuccessListener {
                 val idDonasiuser = it.child("idDonasi").value.toString()
@@ -121,7 +122,7 @@ class PickLocation : AppCompatActivity(),OnMapReadyCallback,
                 )
 
                 databaseUser.child(idDonasi!!).setValue(donasiUser).addOnSuccessListener {
-                    uploadDonationImage(idDonasi!!)
+                    uploadDonationImage()
                 }.addOnFailureListener {
                     Toast.makeText(this, it.localizedMessage, Toast.LENGTH_SHORT).show()
                 }
@@ -144,24 +145,25 @@ class PickLocation : AppCompatActivity(),OnMapReadyCallback,
 
     }
 
-    private fun uploadDonationImage(id: String) {
-        storageRef = FirebaseStorage.getInstance().getReference("donationImages/" + id)
+    private fun uploadDonationImage() {
+        currentFile = Uri.parse(binding.tvPerantara.text.toString())
+        val id = intent.getStringExtra("idDonasi")
+        storageRef = FirebaseStorage.getInstance().getReference("donationImages/$id")
         storageRef.putFile(currentFile!!).addOnSuccessListener {
 
             it.metadata!!.reference!!.downloadUrl
-                .addOnSuccessListener {
-                    val mapImage = it
+                .addOnSuccessListener { uri ->
 
                     databaseUser = FirebaseDatabase.getInstance().getReference("DonasiMakanan")
-                    databaseUser.child(id).get().addOnSuccessListener {
-                        val idUser = it.child("idUser").value.toString()
-                        val idDonasi = it.child("idDonasi").value.toString()
-                        val judulDonasi = it.child("judulDonasi").value.toString()
-                        val alamatDonasi = it.child("alamatDonasi").value.toString()
-                        val kategoriDonasi = it.child("kategoriDonasi").value.toString()
-                        val statusDonasi = it.child("statusDonasi").value.toString()
-                        val tanggalDonasi = it.child("tanggalDonasi").value.toString()
-                        val dropOffPickup = it.child("dropOffPickUp").value.toString()
+                    databaseUser.child(id!!).get().addOnSuccessListener { dataSnapshot ->
+                        val idUser = dataSnapshot.child("idUser").value.toString()
+                        val idDonasi = dataSnapshot.child("idDonasi").value.toString()
+                        val judulDonasi = dataSnapshot.child("judulDonasi").value.toString()
+                        val alamatDonasi = dataSnapshot.child("alamatDonasi").value.toString()
+                        val kategoriDonasi = dataSnapshot.child("kategoriDonasi").value.toString()
+                        val statusDonasi = dataSnapshot.child("statusDonasi").value.toString()
+                        val tanggalDonasi = dataSnapshot.child("tanggalDonasi").value.toString()
+                        val dropOffPickup = dataSnapshot.child("dropOffPickUp").value.toString()
 
                         val donasiUser = DataDonasiMakanan(
                             idUser,
@@ -171,12 +173,13 @@ class PickLocation : AppCompatActivity(),OnMapReadyCallback,
                             tanggalDonasi,
                             kategoriDonasi,
                             statusDonasi,
-                            "${mapImage}",
+                            "$uri",
                             dropOffPickup
                         )
 
                         databaseUser.child(id).setValue(donasiUser).addOnSuccessListener {
-                            Toast.makeText(this, "Sukses Upload", Toast.LENGTH_SHORT).show()
+                            startActivity(Intent(this, OrderSuccess::class.java))
+                            finish()
                         }.addOnFailureListener {
                             Toast.makeText(this, it.localizedMessage, Toast.LENGTH_SHORT).show()
                         }
@@ -189,7 +192,7 @@ class PickLocation : AppCompatActivity(),OnMapReadyCallback,
     }
 
     fun getRandomString(length: Int): String {
-        val allowedChars = ('A'..'Z') + ('a'..'z') + ('0'..'9')
+        val allowedChars = ('A'..'Z') + ('0'..'9')
         return (1..length)
             .map { allowedChars.random() }
             .joinToString("")
@@ -209,8 +212,6 @@ class PickLocation : AppCompatActivity(),OnMapReadyCallback,
             val location = it
             if (location != null) {
                 currentLocation = location
-                Toast.makeText(applicationContext, currentLocation.latitude.toString() + "" +
-                        currentLocation.longitude, Toast.LENGTH_SHORT).show()
                 val supportMapFragment = (supportFragmentManager.findFragmentById(R.id.fragmentMaps) as
                         SupportMapFragment?)!!
                 supportMapFragment.getMapAsync(this)

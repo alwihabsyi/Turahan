@@ -9,6 +9,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.turahan.dev.databinding.ActivityLoginBinding
 import com.turahan.dev.user.MainActivity
+import com.turahan.dev.volunteer.VolunteerMain
 
 class LoginActivity : AppCompatActivity() {
 
@@ -30,15 +31,17 @@ class LoginActivity : AppCompatActivity() {
         binding.btnSignUp.setOnClickListener {
             SignUpFragment().show(supportFragmentManager, "sign up fragment")
         }
+
+        binding.btnLoginVolunteer.setOnClickListener {
+            LoginVolunteerFragment().show(supportFragmentManager, "Sign in volunteer fragment")
+        }
     }
 
     override fun onStart() {
         super.onStart()
         val currentUser = auth.currentUser
         if (currentUser != null) {
-            startActivity(
-                Intent(this, MainActivity::class.java)
-            )
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
     }

@@ -16,8 +16,28 @@
         android:theme="@style/Theme.Turahan"
         tools:targetApi="31">
         <activity
-            android:name=".DonationDetail"
+            android:name=".InstruksiPembayaran"
             android:exported="false" />
+        <activity
+            android:name=".volunteer.VolDonationDetail"
+            android:exported="false"
+            android:theme="@style/Theme.Turahan.NoActionBarAndStatusBar" />
+        <activity
+            android:name=".volunteer.VolunteerDonationHistory"
+            android:exported="false"
+            android:theme="@style/Theme.Turahan.NoActionBarAndStatusBar" />
+        <activity
+            android:name=".OrderSuccess"
+            android:exported="false"
+            android:theme="@style/Theme.Turahan.NoActionBarAndStatusBar" />
+        <activity
+            android:name=".user.profile.DonasiBerhasil"
+            android:exported="false"
+            android:theme="@style/Theme.Turahan.NoActionBarAndStatusBar" />
+        <activity
+            android:name=".user.profile.DonationDetail"
+            android:exported="false"
+            android:theme="@style/Theme.Turahan.NoActionBarAndStatusBar" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -32,7 +52,7 @@
             android:exported="false"
             android:theme="@style/Theme.Turahan.NoActionBarAndStatusBar" />
         <activity
-            android:name=".ChangeProfileActivity"
+            android:name=".user.profile.ChangeProfileActivity"
             android:exported="false"
             android:theme="@style/Theme.Turahan.NoActionBarAndStatusBar" />
         <activity

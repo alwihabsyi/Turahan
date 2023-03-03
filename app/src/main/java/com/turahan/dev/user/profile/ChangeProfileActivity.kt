@@ -1,20 +1,18 @@
-package com.turahan.dev
+package com.turahan.dev.user.profile
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Bitmap
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.result.ActivityResultCallback
-import androidx.activity.result.contract.ActivityResultContracts
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.squareup.picasso.Picasso
+import com.turahan.dev.data.Constants
 import com.turahan.dev.data.DataUser
 import com.turahan.dev.databinding.ActivityChangeProfileBinding
 
@@ -50,8 +48,10 @@ class ChangeProfileActivity : AppCompatActivity() {
             if (uname.isNotEmpty()) {
                 database.child(uid!!).get().addOnSuccessListener {
                     val poin = it.child("poin").value.toString()
+                    val totalPoin = it.child("totalPoin").value.toString()
+                    val kaliDonasi = it.child("kaliDonasi").value.toString()
 
-                    val datauser = DataUser(uid, uname.toString(), alamat.toString(), poin)
+                    val datauser = DataUser(uid, uname.toString(), alamat.toString(), totalPoin, poin, kaliDonasi)
                     database.child(uid).setValue(datauser).addOnSuccessListener {
                         uploadProfPic()
                     }

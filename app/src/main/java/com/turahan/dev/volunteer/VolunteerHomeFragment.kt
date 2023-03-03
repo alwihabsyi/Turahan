@@ -22,6 +22,16 @@ class VolunteerHomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val viewPager = binding.viewPagerVolHome
+        val tabLayout = binding.tabLayout
+
+        val fragmentAdapter = FragmentVolHomeAdapter(activity?.supportFragmentManager!!)
+        fragmentAdapter.addFragment(VolPendingOrder(), "Pending Orders")
+        fragmentAdapter.addFragment(VolSuccessOrder(), "Success Orders")
+
+        viewPager.adapter = fragmentAdapter
+        tabLayout.setupWithViewPager(viewPager)
     }
 
 }

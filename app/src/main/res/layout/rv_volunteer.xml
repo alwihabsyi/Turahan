@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="100dp"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginTop="10dp"
     android:layout_marginStart="10dp"
     android:layout_marginEnd="10dp"
@@ -37,12 +38,18 @@
             android:textSize="18sp" />
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cvStatusDonasi"
             android:layout_width="70dp"
             android:layout_height="30dp"
             android:layout_marginTop="10dp"
             android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            app:cardBackgroundColor="#9403A9F4">
+            android:layout_centerVertical="true">
+
+            <ImageView
+                android:id="@+id/bgStatus"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#9403A9F4"/>
 
             <TextView
                 android:id="@+id/tvStatusDonasi"

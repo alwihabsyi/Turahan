@@ -51,7 +51,7 @@
                 android:fontFamily="@font/montserrat"
                 android:hint="Username"
                 android:textSize="14sp"
-                android:inputType="textEmailAddress"
+                android:inputType="text"
                 android:paddingStart="30dp"
                 android:paddingEnd="30dp"
                 android:paddingBottom="20dp"

@@ -58,100 +58,132 @@
             android:background="@drawable/fragmentcorners2"/>
 
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingBottom="16dp">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/tv_info_jemput"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Informasi Penjemputan"
-                android:textSize="22sp"
-                android:padding="16dp"
+                android:textSize="17sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_centerHorizontal="true"
                 android:textColor="@color/black"
                 android:fontFamily="@font/montserrat_semibold"/>
-            <TextView
-                android:id="@+id/tv_detail_alamat"
+
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:layout_below="@id/tv_info_jemput"
-                android:text=""
-                android:textSize="16sp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/montserrat"/>
-            <ProgressBar
-                android:id="@+id/progress_bar"
-                android:indeterminateTint="@color/BrownDark"
-                android:visibility="gone"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="16dp"
-                android:layout_below="@id/tv_info_jemput"/>
+                android:paddingBottom="16dp">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/btn_donate_now"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_above="@id/btn_alamat_lain"
-                android:minHeight="48dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
-                app:cardBackgroundColor="@color/BrownDark"
-                android:clickable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                app:cardCornerRadius="30dp"
-                app:cardElevation="3dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/montserrat"
-                    android:text="Donasi Sekarang"
-                    android:textAlignment="center"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="20sp" />
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/btn_alamat_lain"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="16dp"
-                android:minHeight="48dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
-                android:clickable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                app:cardCornerRadius="30dp">
-
-                <com.google.android.material.imageview.ShapeableImageView
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvAlamatKeluar"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:background="@drawable/btn_secondary"/>
+                    android:layout_height="match_parent"
+                    android:layout_above="@id/btn_donate_now"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="15dp"
+                    app:cardCornerRadius="15dp">
+
+                    <TextView
+                        android:id="@+id/tv_detail_alamat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="10dp"
+                        android:fontFamily="@font/montserrat"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <ProgressBar
+                        android:id="@+id/progress_bar"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="16dp"
+                        android:indeterminateTint="@color/BrownDark"
+                        android:visibility="gone" />
+
+                </androidx.cardview.widget.CardView>
 
                 <TextView
+                    android:id="@+id/tv_perantara"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/montserrat"
-                    android:text="Pilih Alamat Lain"
-                    android:textAlignment="center"
-                    android:textAllCaps="false"
-                    android:textColor="@color/BrownDark"
-                    android:textSize="20sp" />
+                    android:text=""
+                    android:layout_below="@id/cvAlamatKeluar"
+                    android:textSize="16sp"
+                    android:textColor="#00000000"
+                    android:fontFamily="@font/montserrat"/>
 
-            </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/btn_donate_now"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_above="@id/btn_alamat_lain"
+                    android:minHeight="48dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginStart="25dp"
+                    app:cardBackgroundColor="@color/BrownDark"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardCornerRadius="30dp"
+                    app:cardElevation="3dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/montserrat"
+                        android:text="Donasi Sekarang"
+                        android:textAlignment="center"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/btn_alamat_lain"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="16dp"
+                    android:minHeight="48dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginStart="25dp"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardCornerRadius="30dp">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="@drawable/btn_secondary"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/montserrat"
+                        android:text="Pilih Alamat Lain"
+                        android:textAlignment="center"
+                        android:textAllCaps="false"
+                        android:textColor="@color/BrownDark"
+                        android:textSize="20sp" />
+
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
 
         </RelativeLayout>
-
 
     </androidx.cardview.widget.CardView>
 

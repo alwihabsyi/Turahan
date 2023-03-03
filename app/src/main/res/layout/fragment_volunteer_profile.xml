@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".user.ProfileFragment">
+    tools:context=".volunteer.VolunteerProfileFragment">
 
     <TextView
         android:id="@+id/profileappbar"
@@ -30,25 +30,26 @@
         android:id="@+id/changeprofilesection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/profileappbar"
+        android:layout_centerInParent="true"
         android:layout_marginTop="40dp">
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/cvProfil"
             android:layout_width="140dp"
             android:layout_height="140dp"
-            android:layout_centerHorizontal="true"
-            android:foreground="@drawable/ivprofilebg"
-            app:cardCornerRadius="100dp">
+            app:strokeWidth="1.5dp"
+            app:strokeColor="#B83B3B"
+            app:cardCornerRadius="100dp"
+            android:layout_centerHorizontal="true">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/bgprofil"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
+                android:id="@+id/ivProfil"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
                 android:layout_gravity="center"
                 android:src="@drawable/baseline_person_24" />
 
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
         <TextView
             android:id="@+id/tv_username"
@@ -79,79 +80,6 @@
             android:layout_marginStart="3dp"
             android:layout_toEndOf="@id/tv_changeprofile"
             android:src="@drawable/ic_edit" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/profSecondSection"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/changeprofilesection"
-        android:layout_marginTop="20dp"
-        android:padding="20dp">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/btnDonationReport"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="10dp"
-            android:clickable="true"
-            app:cardCornerRadius="10dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="5dp">
-
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/icreport" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:fontFamily="@font/montserrat"
-                    android:text="Donation Report"
-                    android:textSize="15sp" />
-
-            </RelativeLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/btnDonationHistory"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@id/btnDonationReport"
-            android:layout_margin="10dp"
-            android:clickable="true"
-            app:cardCornerRadius="10dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="5dp">
-
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ichistory" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:fontFamily="@font/montserrat"
-                    android:text="Donation History"
-                    android:textSize="15sp" />
-
-            </RelativeLayout>
-
-        </androidx.cardview.widget.CardView>
 
     </RelativeLayout>
 

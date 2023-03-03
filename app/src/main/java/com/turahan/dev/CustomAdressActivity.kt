@@ -1,8 +1,10 @@
 package com.turahan.dev
 
+import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -34,9 +36,9 @@ class CustomAdressActivity : AppCompatActivity() {
         binding.cbDefaultAddress.setOnClickListener {
             databaseUser.child(auth.currentUser!!.uid).get().addOnSuccessListener {
                 val alamat = it.child("alamat").value.toString()
-                if(binding.cbDefaultAddress.isChecked){
+                if (binding.cbDefaultAddress.isChecked) {
                     binding.etAlamat.setText(alamat)
-                }else{
+                } else {
                     binding.etAlamat.text = null
                 }
             }
@@ -48,11 +50,11 @@ class CustomAdressActivity : AppCompatActivity() {
         val tanggalDonasi = intent.getStringExtra("tanggalDonasi")
         val kategoriDonasi = intent.getStringExtra("kategoriDonasi")
         val statusDonasi = intent.getStringExtra("statusDonasi")
-        val alamatDonasi = "${binding.etAlamat.text} , ${binding.etDetailAlamat} , ${binding.etJudulAlamat}"
         currentFile = Uri.parse(intent.getStringExtra("fotoDonasi"))
 
         binding.btnDonateNow.setOnClickListener {
-            databaseUser.child("idDonasi").get().addOnSuccessListener {
+            val alamatDonasi = "${binding.etAlamat.text} , ${binding.etDetailAlamat.text} , ${binding.etJudulAlamat.text}"
+            databaseDonasi.child("idDonasi").get().addOnSuccessListener {
                 val idDonasiuser = it.child("idDonasi").value.toString()
                 if (idDonasiuser == idDonasi) {
                     idDonasi = "${auth.currentUser?.displayName}+${getRandomString(5)}"
@@ -65,7 +67,7 @@ class CustomAdressActivity : AppCompatActivity() {
                     tanggalDonasi,
                     kategoriDonasi,
                     statusDonasi,
-                    "Pending"
+                    " "
                 )
 
                 databaseDonasi.child(idDonasi!!).setValue(donasiUser).addOnSuccessListener {
@@ -107,7 +109,8 @@ class CustomAdressActivity : AppCompatActivity() {
                         )
 
                         databaseDonasi.child(id).setValue(donasiUser).addOnSuccessListener {
-                            Toast.makeText(this, "Sukses Upload", Toast.LENGTH_SHORT).show()
+                            startActivity(Intent(this, OrderSuccess::class.java))
+                            finish()
                         }.addOnFailureListener {
                             Toast.makeText(this, it.localizedMessage, Toast.LENGTH_SHORT).show()
                         }

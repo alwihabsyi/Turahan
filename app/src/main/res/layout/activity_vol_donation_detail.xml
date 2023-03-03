@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".user.profile.DonationDetail">
+    tools:context=".volunteer.VolDonationDetail">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -277,34 +277,75 @@
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/btn_Cancel"
-            android:layout_width="match_parent"
+        <RelativeLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/cvJumlahDonasi"
+            android:padding="10dp"
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="15dp"
-            android:layout_marginBottom="100dp"
-            android:clickable="true"
-            app:cardElevation="5dp">
+            android:layout_centerHorizontal="true">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btn_Confirm"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:padding="10dp">
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="7dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp"
+                android:clickable="true"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="5dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:fontFamily="@font/montserrat_semibold"
-                    android:text="Cancel Donasi"
-                    android:textColor="@color/red_maroon"
-                    android:textSize="17sp" />
+                    android:padding="10dp">
 
-            </RelativeLayout>
-        </androidx.cardview.widget.CardView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/montserrat_semibold"
+                        android:text="Confirm Donation"
+                        android:textColor="@color/red_maroon"
+                        android:textSize="17sp" />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btn_Cancel"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="7dp"
+                android:layout_marginTop="5dp"
+                android:clickable="true"
+                android:layout_toEndOf="@id/btn_Confirm"
+                app:cardBackgroundColor="@color/red_maroon"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="5dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/montserrat_semibold"
+                        android:text="Cancel Donation"
+                        android:textColor="@color/white"
+                        android:textSize="17sp" />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
 
     </RelativeLayout>
 </ScrollView>

@@ -24,6 +24,7 @@ import com.turahan.dev.*
 import com.turahan.dev.databinding.FragmentHomeBinding
 import com.turahan.dev.sign.SignUpFragment.Companion.EXTRA_NAME
 import com.turahan.dev.user.home.*
+import com.turahan.dev.volunteer.VolunteerMain
 import me.relex.circleindicator.CircleIndicator3
 
 class HomeFragment : Fragment() {

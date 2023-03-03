@@ -11,17 +11,7 @@
         android:label="fragment_volunteer_home"
         tools:layout="@layout/fragment_volunteer_home" >
         <action
-            android:id="@+id/action_fragment_volunteer_home_to_fragment_volunteer_cash_donation"
-            app:destination="@id/fragment_volunteer_cash_donation" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/fragment_volunteer_cash_donation"
-        android:name="com.turahan.dev.volunteer.VolCashDonationFragment"
-        android:label="fragment_volunteer_cash_donation"
-        tools:layout="@layout/fragment_vol_cash_donation" >
-        <action
-            android:id="@+id/action_fragment_volunteer_cash_donation_to_fragment_volunteer_profile"
+            android:id="@+id/action_fragment_volunteer_home_to_fragment_volunteer_profile"
             app:destination="@id/fragment_volunteer_profile" />
     </fragment>
 

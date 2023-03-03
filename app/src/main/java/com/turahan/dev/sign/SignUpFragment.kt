@@ -85,7 +85,7 @@ class SignUpFragment : BottomSheetDialogFragment() {
                 if (it.isSuccessful) {
                     database = FirebaseDatabase.getInstance().getReference("User")
                     val uid = auth.currentUser?.uid
-                    val datauser = DataUser(uid, user, " ", "0")
+                    val datauser = DataUser(uid, user, " ", "0", "0", "0")
                     database.child(uid!!).setValue(datauser)
 
 

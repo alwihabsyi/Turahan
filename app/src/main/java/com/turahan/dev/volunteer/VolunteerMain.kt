@@ -21,6 +21,7 @@ class VolunteerMain : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.vol_nav_host_fragment_container) as NavHostFragment
         navController = navHostFragment.navController
         setupVolSmoothBottomMenu()
+
     }
 
     private fun setupVolSmoothBottomMenu() {

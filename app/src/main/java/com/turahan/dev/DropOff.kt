@@ -13,6 +13,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.turahan.dev.data.Constants
 import com.turahan.dev.data.DataDonasiMakanan
 import com.turahan.dev.databinding.ActivityDropOffBinding
 import com.turahan.dev.user.MainActivity
@@ -53,7 +54,7 @@ class DropOff : AppCompatActivity() {
             val radioButtonUneat = binding.uneatableRadioButton
             var kategoriDonasi = " "
             val date = Calendar.getInstance().time
-            val tanggalDonasi = date.toString("yyyy/MM/dd HH:mm")
+            val tanggalDonasi = date.toString("dd MMMM YYYY | HH:mm")
             var id = "${auth.currentUser?.displayName}${getRandomString(5)}"
 
             if (judulDonasi.isEmpty()) {
@@ -83,8 +84,8 @@ class DropOff : AppCompatActivity() {
                     "Drop Off"
                 )
 
-                databaseDonasi.child(id!!).setValue(donasiUser).addOnSuccessListener {
-                    uploadDonationImage(id!!)
+                databaseDonasi.child(id).setValue(donasiUser).addOnSuccessListener {
+                    uploadDonationImage(id)
                 }.addOnFailureListener {
                     Toast.makeText(this, it.localizedMessage, Toast.LENGTH_SHORT).show()
                 }
@@ -124,7 +125,8 @@ class DropOff : AppCompatActivity() {
                         )
 
                         databaseDonasi.child(id).setValue(donasiUser).addOnSuccessListener {
-                            Toast.makeText(this, "Sukses Upload", Toast.LENGTH_SHORT).show()
+                            startActivity(Intent(this, OrderSuccess::class.java))
+                            finish()
                         }.addOnFailureListener {
                             Toast.makeText(this, it.localizedMessage, Toast.LENGTH_SHORT).show()
                         }
@@ -143,7 +145,7 @@ class DropOff : AppCompatActivity() {
     }
 
     fun getRandomString(length: Int): String {
-        val allowedChars = ('A'..'Z') + ('a'..'z') + ('0'..'9')
+        val allowedChars = ('A'..'Z') + ('0'..'9')
         return (1..length)
             .map { allowedChars.random() }
             .joinToString("")

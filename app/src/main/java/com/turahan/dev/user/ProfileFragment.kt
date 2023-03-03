@@ -15,7 +15,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
-import com.turahan.dev.ChangeProfileActivity
+import com.turahan.dev.user.profile.ChangeProfileActivity
 import com.turahan.dev.user.profile.AboutActivity
 import com.turahan.dev.user.profile.DonationHistory
 import com.turahan.dev.user.profile.DonationReport

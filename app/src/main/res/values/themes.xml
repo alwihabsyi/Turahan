@@ -32,4 +32,16 @@
         parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/fragmentcorners</item>
     </style>
+    <style name="Theme.Turahan.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.Turahan.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.Turahan.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="TabLayoutTextStyle">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/red_maroon</item>
+    </style>
 </resources>

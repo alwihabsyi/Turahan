@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".CustomAdressActivity">
 
     <RelativeLayout
@@ -11,8 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="150dp"
         android:background="@drawable/fragmentcorners"
-        android:paddingTop="30dp"
         android:paddingStart="20dp"
+        android:paddingTop="30dp"
         android:paddingEnd="20dp"
         android:paddingBottom="20dp">
 
@@ -30,8 +30,8 @@
             android:id="@+id/default_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:layout_below="@id/tv_alamat_pickup"
+            android:layout_marginTop="24dp"
             android:orientation="horizontal">
 
             <CheckBox
@@ -39,6 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:buttonTint="@color/BrownDark" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -56,75 +57,79 @@
             android:id="@+id/alamat_lengkap"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_below="@id/default_address"
             android:layout_marginTop="16dp"
-            android:layout_below="@id/default_address">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/label_alamat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/BrownDark"
                 android:fontFamily="@font/montserrat"
-                android:text="Alamat Lengkap"/>
+                android:text="Alamat Lengkap"
+                android:textColor="@color/BrownDark" />
+
             <EditText
                 android:id="@+id/et_alamat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
-                android:paddingStart="12dp"
-                android:textColor="@color/BrownDark"
                 android:backgroundTint="@color/BrownDark"
                 android:fontFamily="@font/montserrat"
-                android:hint="Isi alamat lengkapmu"/>
+                android:hint="Isi alamat lengkapmu"
+                android:paddingStart="12dp"
+                android:textColor="@color/BrownDark" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/detail_alamat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_below="@id/alamat_lengkap"
             android:layout_marginTop="16dp"
-            android:layout_below="@id/alamat_lengkap">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/label_detail_alamat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/BrownDark"
-                android:text="Detail Lainnya"/>
+                android:text="Detail Lainnya"
+                android:textColor="@color/BrownDark" />
+
             <EditText
                 android:id="@+id/et_detail_alamat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="12dp"
                 android:backgroundTint="@color/BrownDark"
                 android:fontFamily="@font/montserrat"
-                android:hint="Gang / Blok, Patokan"/>
+                android:hint="Gang / Blok, Patokan"
+                android:paddingStart="12dp"
+                android:textColor="@color/BrownDark" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/judul_alamat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_below="@id/detail_alamat"
             android:layout_marginTop="16dp"
-            android:layout_below="@id/detail_alamat">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/labael_judul_alamat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/BrownDark"
-                android:text="Judul Alamat"/>
+                android:text="Judul Alamat"
+                android:textColor="@color/BrownDark" />
+
             <EditText
                 android:id="@+id/et_judul_alamat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="12dp"
                 android:backgroundTint="@color/BrownDark"
                 android:fontFamily="@font/montserrat"
-                android:hint="Rumah Pribadi, Kantor"/>
+                android:hint="Rumah Pribadi, Kantor"
+                android:paddingStart="12dp"
+                android:textColor="@color/BrownDark" />
         </LinearLayout>
 
 
@@ -132,14 +137,14 @@
             android:id="@+id/btn_donate_now"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:layout_below="@id/judul_alamat"
-            android:minHeight="48dp"
-            app:cardBackgroundColor="@color/BrownDark"
+            android:layout_gravity="center"
+            android:layout_marginTop="48dp"
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground"
-            app:cardCornerRadius="30dp"
-            android:layout_marginTop="48dp">
+            android:minHeight="48dp"
+            app:cardBackgroundColor="@color/BrownDark"
+            app:cardCornerRadius="30dp">
 
             <TextView
                 android:layout_width="wrap_content"

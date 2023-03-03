@@ -1,5 +1,6 @@
-package com.turahan.dev
+package com.turahan.dev.user.profile
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import com.turahan.dev.R
 import com.turahan.dev.data.DataDonasiMakanan
 
 class DonationHistoryAdapter(private val dataset: ArrayList<DataDonasiMakanan>, val eventHandling: (DataDonasiMakanan) -> Unit) :
@@ -30,16 +32,23 @@ class DonationHistoryAdapter(private val dataset: ArrayList<DataDonasiMakanan>, 
         val tanggalDonasi = view.findViewById<TextView>(R.id.tvTanggalDonasi)
         val kategoriDonasi = view.findViewById<TextView>(R.id.tvKategoriDonasi)
         val statusDonasi = view.findViewById<TextView>(R.id.tvStatusDonasi)
+        val bg = view.findViewById<ImageView>(R.id.bgStatus)
 
         fun onBindView(data: DataDonasiMakanan){
-            Picasso
-                .get()
-                .load(data.fotoDonasi)
-                .into(fotoDonasi)
+            if(data.fotoDonasi != null){
+                Picasso
+                    .get()
+                    .load(data.fotoDonasi)
+                    .into(fotoDonasi)
+            }
             judulDonasi.text = data.judulDonasi
             tanggalDonasi.text = data.tanggalDonasi
             kategoriDonasi.text = data.dropOffPickUp
             statusDonasi.text = data.statusDonasi
+
+            if(data.statusDonasi == "Success"){
+                bg.setBackgroundColor(Color.parseColor("#39FC03"))
+            }
 
             itemView.setOnClickListener { eventHandling(data) }
         }

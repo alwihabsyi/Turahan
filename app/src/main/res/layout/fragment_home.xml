@@ -41,14 +41,14 @@
             android:layout_marginEnd="20dp"
             android:src="@drawable/notificon" />
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/notificonred"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="18dp"
-            android:layout_marginEnd="20dp"
-            android:src="@drawable/rednotif" />
+<!--        <com.google.android.material.imageview.ShapeableImageView-->
+<!--            android:id="@+id/notificonred"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:layout_marginTop="18dp"-->
+<!--            android:layout_marginEnd="20dp"-->
+<!--            android:src="@drawable/rednotif" />-->
 
         <View
             android:layout_width="match_parent"

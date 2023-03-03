@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/transparent"
     tools:context=".user.home.IsiDonasi">
 
@@ -12,26 +12,15 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="150dp"
         android:background="@drawable/fragmentcorners"
-        android:paddingStart="20dp"
         android:paddingTop="30dp"
+        android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:paddingBottom="20dp">
-
-        <TextView
-            android:id="@+id/tvsignin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="@font/montserrat_semibold"
-            android:text="Masukkan Nominal Donasi"
-            android:textColor="@color/BrownDark"
-            android:textSize="24sp" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_below="@+id/tvsignin"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="60dp"
             android:gravity="center"
@@ -40,6 +29,7 @@
             app:prefixTextColor="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputNominal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/montserrat"
@@ -56,56 +46,95 @@
             android:id="@+id/rekening_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_below="@id/textInputLayout"
             android:layout_marginTop="16dp"
-            android:orientation="vertical"
             android:weightSum="1">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_semibold"
                 android:text="Pilih Rekening"
-                android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:fontFamily="@font/montserrat_semibold"
+                android:textSize="20dp"
+                android:textColor="@color/black"/>
 
-
-            <!--CardView for BRI -->
+            <!--CardView for BCA -->
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card_bri"
+                android:id="@+id/card_bca"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:layout_marginTop="20dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/black"
                 android:checkable="true"
                 android:clickable="true"
                 android:focusable="true"
                 android:padding="10dp"
                 app:cardBackgroundColor="@android:color/white"
-                app:cardCornerRadius="10dp"
-                app:strokeColor="@color/black"
-                app:strokeWidth="1dp">
+                app:cardCornerRadius="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="10dp">
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:text="Bank Rakyat Indonesia (BRI)"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+                    <ImageView
+                        android:layout_width="34dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="5dp"
+                        app:srcCompat="@drawable/bca" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:layout_marginStart="5dp"
-                        android:layout_marginTop="15dp"
-                        android:text="32129 291929 192"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+                        android:text="Bank Central Asia (BCA)"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                        android:textSize="20sp" />
+                </LinearLayout>
 
+            </com.google.android.material.card.MaterialCardView>
+
+            <!--CardView for BRI -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_bri"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginTop="20dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/black"
+                android:checkable="true"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="10dp"
+                app:cardBackgroundColor="@android:color/white"
+                app:cardCornerRadius="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="34dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="5dp"
+                        app:srcCompat="@drawable/bri" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="5dp"
+                        android:text="Bank Rakyat Indonesia (BRI)"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                        android:textSize="20sp" />
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
@@ -114,58 +143,55 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_bni"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:layout_marginTop="20dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/black"
                 android:checkable="true"
                 android:clickable="true"
                 android:focusable="true"
-                android:foreground="@drawable/ic_launcher_background"
                 android:padding="10dp"
                 app:cardBackgroundColor="@android:color/white"
-                app:cardCornerRadius="10dp"
-                app:strokeColor="@color/black"
-                app:strokeWidth="1dp">
+                app:cardCornerRadius="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="10dp">
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:text="Bank Negara Indonesia (BNI)"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+                    <ImageView
+                        android:layout_width="34dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="5dp"
+                        app:srcCompat="@drawable/bni" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:layout_marginStart="5dp"
-                        android:layout_marginTop="15dp"
-                        android:text="32129 291929 192"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
-
+                        android:text="Bank Negara Indonesia (BNI)"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                        android:textSize="20sp" />
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
-
         </LinearLayout>
 
-
         <androidx.cardview.widget.CardView
-            android:id="@+id/btn_signin"
+            android:id="@+id/btn_bayar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/rekening_container"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
+            android:minHeight="50dp"
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground"
-            android:minHeight="50dp"
-            app:cardBackgroundColor="@color/BrownDark"
             app:cardCornerRadius="30dp"
+            app:cardBackgroundColor="@color/BrownDark"
             app:cardElevation="3dp">
 
             <TextView
@@ -180,7 +206,6 @@
                 android:textSize="22sp" />
 
         </androidx.cardview.widget.CardView>
-
 
     </RelativeLayout>
 
