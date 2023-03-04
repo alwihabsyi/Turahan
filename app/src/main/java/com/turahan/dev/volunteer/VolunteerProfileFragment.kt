@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
@@ -21,6 +24,7 @@ class VolunteerProfileFragment : Fragment() {
     private lateinit var binding: FragmentVolunteerProfileBinding
     private lateinit var database: DatabaseReference
     private lateinit var auth: FirebaseAuth
+    private lateinit var gsc: GoogleSignInClient
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,6 +38,11 @@ class VolunteerProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         auth = Firebase.auth
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken("793143099222-j5r05tbkdqilsken13gv4f9jj3u3s5bj.apps.googleusercontent.com")
+            .requestEmail()
+            .build()
+        gsc = GoogleSignIn.getClient(requireContext(), gso)
         profname()
 
         //Intent Button
@@ -43,6 +52,7 @@ class VolunteerProfileFragment : Fragment() {
 
         binding.btnLogOut.setOnClickListener {
             auth.signOut()
+            gsc.signOut()
             startActivity(Intent(requireContext(), LoginActivity::class.java))
             activity?.finish()
         }
