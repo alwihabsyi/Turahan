@@ -59,10 +59,14 @@ class VolDonationDetail : AppCompatActivity() {
         binding.tvalamat.text = user?.alamatDonasi
 
 
-        Picasso
-            .get()
-            .load(user?.fotoDonasi)
-            .into(binding.ivFotoDonasi)
+        if (user?.fotoDonasi != "") {
+            Picasso
+                .get()
+                .load(user?.fotoDonasi)
+                .into(binding.ivFotoDonasi)
+        } else {
+            binding.ivFotoDonasi.setImageResource(R.drawable.cash_ic)
+        }
 
         //Btn Confirm
         binding.btnConfirm.setOnClickListener {

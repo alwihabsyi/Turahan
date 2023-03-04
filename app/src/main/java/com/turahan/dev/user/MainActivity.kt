@@ -48,9 +48,6 @@ class MainActivity : AppCompatActivity() {
         if (currentUser!!.email == "alwihbsyi.ah@gmail.com") {
             startActivity(Intent(this, VolunteerMain::class.java))
             finish()
-        }else{
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
         }
     }
 }
