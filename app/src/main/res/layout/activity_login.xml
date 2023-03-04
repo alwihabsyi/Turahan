@@ -82,11 +82,10 @@
         android:clickable="true"
         android:minHeight="50dp"
         app:cardBackgroundColor="@color/BrownDark"
-        android:layout_below="@id/tv_slogan"
-        android:layout_marginBottom="14dp"
+        android:layout_above="@id/btn_signUp"
+        android:layout_marginBottom="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="140dp"
         app:cardCornerRadius="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -112,7 +111,8 @@
         app:cardBackgroundColor="@color/BrownLight"
         app:cardCornerRadius="8dp"
         android:layout_marginTop="2dp"
-        android:layout_below="@id/btn_signIn"
+        android:layout_above="@id/btnLoginVolunteer"
+        android:layout_marginBottom="24dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp">
 
