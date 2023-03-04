@@ -72,7 +72,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_height="wrap_content"
                     android:textColor="#C03E3E"
-                    android:text="Baca Selengkapnya"/>
+                    android:text="Read More"/>
 
             </RelativeLayout>
 
