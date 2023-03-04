@@ -24,6 +24,8 @@ import com.turahan.dev.R
 import com.turahan.dev.data.DataUser
 import com.turahan.dev.databinding.FragmentSignUpBinding
 import com.turahan.dev.user.MainActivity
+import java.text.SimpleDateFormat
+import java.util.*
 
 class SignUpFragment : BottomSheetDialogFragment() {
 
@@ -85,7 +87,9 @@ class SignUpFragment : BottomSheetDialogFragment() {
                 if (it.isSuccessful) {
                     database = FirebaseDatabase.getInstance().getReference("User")
                     val uid = auth.currentUser?.uid
-                    val datauser = DataUser(uid, user, " ", "0", "0", "0")
+                    val date = Calendar.getInstance().time
+                    val tanggalBergabung = date.toString("dd MMMM YYYY")
+                    val datauser = DataUser(uid, user, " ", "0", "0", "0", tanggalBergabung)
                     database.child(uid!!).setValue(datauser)
 
 
@@ -99,6 +103,11 @@ class SignUpFragment : BottomSheetDialogFragment() {
                 Toast.makeText(this.context, it.localizedMessage, Toast.LENGTH_SHORT)
                     .show()
             }
+    }
+
+    fun Date.toString(format: String, locale: Locale = Locale.getDefault()): String {
+        val formatter = SimpleDateFormat(format, locale)
+        return formatter.format(this)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -150,7 +159,9 @@ class SignUpFragment : BottomSheetDialogFragment() {
                 startActivity(intent)
                 activity?.finish()
             }else{
-                val datauser = DataUser(user.uid, user.displayName, " ", "0", "0", "0")
+                val date = Calendar.getInstance().time
+                val tanggalBergabung = date.toString("dd MMMM YYYY")
+                val datauser = DataUser(user.uid, user.displayName, " ", "0", "0", "0", tanggalBergabung)
                 database.child(user.uid).setValue(datauser)
                 val intent = Intent(context, MainActivity::class.java)
                 intent.putExtra(EXTRA_NAME, user.displayName)

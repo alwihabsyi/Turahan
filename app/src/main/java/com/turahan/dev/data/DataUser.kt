@@ -6,5 +6,6 @@ data class DataUser(
     val alamat: String? = null,
     val totalPoin: String? = null,
     val poin: String? = null,
-    val kaliDonasi: String? = null
+    val kaliDonasi: String? = null,
+    val tanggalBergabung: String? = null
 )

@@ -1,11 +1,13 @@
 package com.turahan.dev.user.profile
 
+import android.app.Dialog
 import android.content.Intent
-import android.net.Uri
-import android.os.Build
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.Toast
 import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
@@ -16,9 +18,8 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
 import com.turahan.dev.R
-import com.turahan.dev.data.DataDonasiMakanan
+import com.turahan.dev.data.DataDonasi
 import com.turahan.dev.databinding.ActivityDonationDetailBinding
-import com.turahan.dev.user.MainActivity
 
 class DonationDetail : AppCompatActivity() {
 
@@ -31,13 +32,13 @@ class DonationDetail : AppCompatActivity() {
         binding = ActivityDonationDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = Firebase.auth
-        database = FirebaseDatabase.getInstance().getReference("DonasiMakanan")
+        database = FirebaseDatabase.getInstance().getReference("Donasi")
 
         binding.expandButton.setOnClickListener {
             if (binding.containerDetalJumlahDonasi.visibility == View.VISIBLE) {
-                TransitionManager.beginDelayedTransition(binding.cvJumlahDonasi, AutoTransition())
                 binding.containerDetalJumlahDonasi.visibility = View.GONE
                 binding.expandButton.setImageResource(R.drawable.expand_more)
+                TransitionManager.beginDelayedTransition(binding.cvJumlahDonasi, AutoTransition())
             } else {
                 TransitionManager.beginDelayedTransition(binding.cvJumlahDonasi, AutoTransition())
                 binding.containerDetalJumlahDonasi.visibility = View.VISIBLE
@@ -45,26 +46,47 @@ class DonationDetail : AppCompatActivity() {
             }
         }
 
-        val user = intent.getParcelableExtra<DataDonasiMakanan>("user")
+        val user = intent.getParcelableExtra<DataDonasi>("user")
         //Move Data
         binding.tvMetodePembayaran.text = user?.dropOffPickUp
         binding.tvIdDonasi.text = user?.idDonasi
-        binding.tvStatus.text = user?.statusDonasi
         binding.tvJumlahDonasi.text = user?.judulDonasi
         binding.tvDetailKodeUnik.text = user?.kategoriDonasi
         binding.tvAlamatDonasi.text = user?.alamatDonasi
 
-        Picasso
-            .get()
-            .load(user?.fotoDonasi)
-            .into(binding.ivFotoDonasi)
+        if(user?.alamatDonasi == "Cash"){
+            binding.textView20.text = "Donation Amount"
+        }
+
+        if(user?.statusDonasi == "Processed"){
+            if(user.dropOffPickUp == "Pick Up"){
+                binding.tvMenungguPembayaran.text = "Approved"
+                binding.tvStatusPlus.text = "Waiting For Pick Up"
+                binding.tvStatus.text = "Your food is getting picked up, please prepare"
+            }else if(user.dropOffPickUp == "Drop Off"){
+                binding.tvMenungguPembayaran.text = "Approved"
+                binding.tvStatusPlus.text = "Waiting For Drop Off"
+                binding.tvStatus.text = "Donation confirmed, you can drop off the food at our address"
+            }
+        }else{
+            binding.tvStatus.text = user?.statusDonasi
+        }
+
+        if (user?.fotoDonasi != "") {
+            Picasso
+                .get()
+                .load(user?.fotoDonasi)
+                .into(binding.ivFotoDonasi)
+        } else {
+            binding.ivFotoDonasi.setImageResource(R.drawable.cash_ic)
+        }
 
         //Btn Update
         binding.perbaruiStatusButton.setOnClickListener {
             database.child(user?.idDonasi!!).get().addOnSuccessListener {
                 val status = it.child("statusDonasi").value.toString()
                 if(status == "Pending"){
-                    Toast.makeText(this, "Donasi Masih Dalam Proses Konfirmasi", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Your donation is still waiting for approval", Toast.LENGTH_SHORT).show()
                 }else if(status == "Success"){
                     startActivity(Intent(this, DonasiBerhasil::class.java).apply {
                         putExtra("tanggalDonasi", user.tanggalDonasi)
@@ -73,25 +95,49 @@ class DonationDetail : AppCompatActivity() {
                         putExtra("statusDonasi", user.statusDonasi)
                         putExtra("judulDonasi", user.judulDonasi)
                         putExtra("alamatDonasi", user.alamatDonasi)
+                        putExtra("kategoriDonasi", user.kategoriDonasi)
                     })
                     finish()
+                }else if(status == "Processed"){
+                    if(user.dropOffPickUp == "Pick Up"){
+                        Toast.makeText(this, "Donation Approved, your donation is getting picked up", Toast.LENGTH_SHORT).show()
+                    }else if(user.dropOffPickUp == "Drop Off"){
+                        Toast.makeText(this, "Donation Approved, you can drop off your donation at our address", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         }
 
         //Btn Cancel
         binding.btnCancel.setOnClickListener {
-            database.child(user?.idDonasi!!).removeValue().addOnSuccessListener {
-                Toast.makeText(this, "Berhasil Cancel Donasi", Toast.LENGTH_SHORT).show()
-                finish()
+            val dialogBinding = layoutInflater.inflate(R.layout.cancel_dialog, null)
+            val dialog = Dialog(this)
+            dialog.setContentView(dialogBinding)
+
+            dialog.setCancelable(true)
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialog.show()
+
+            val yesbtn = dialogBinding.findViewById<Button>(R.id.btn_yes)
+            val nobtn = dialogBinding.findViewById<Button>(R.id.btn_no)
+
+            yesbtn.setOnClickListener {
+                database.child(user?.idDonasi!!).removeValue().addOnSuccessListener {
+                    Toast.makeText(this, "Donation Cancellation Success", Toast.LENGTH_SHORT).show()
+                    finish()
+                }
+            }
+
+            nobtn.setOnClickListener {
+                dialog.cancel()
             }
         }
     }
 
     override fun onStart() {
         super.onStart()
-        database = FirebaseDatabase.getInstance().getReference("DonasiMakanan")
-        val user = intent.getParcelableExtra<DataDonasiMakanan>("user")
+        database = FirebaseDatabase.getInstance().getReference("Donasi")
+        val user = intent.getParcelableExtra<DataDonasi>("user")
         database.child(user?.idDonasi!!).get().addOnSuccessListener {
             val status = it.child("statusDonasi").value.toString()
             if(status == "Success"){
@@ -102,6 +148,7 @@ class DonationDetail : AppCompatActivity() {
                     putExtra("statusDonasi", user.statusDonasi)
                     putExtra("judulDonasi", user.judulDonasi)
                     putExtra("alamatDonasi", user.alamatDonasi)
+                    putExtra("kategoriDonasi", user.kategoriDonasi)
                 })
                 finish()
             }

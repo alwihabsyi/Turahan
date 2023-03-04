@@ -16,8 +16,17 @@
         android:theme="@style/Theme.Turahan"
         tools:targetApi="31">
         <activity
+            android:name=".volunteer.VolProcessDonation"
+            android:exported="false"
+            android:theme="@style/Theme.Turahan.NoActionBarAndStatusBar" />
+        <activity
+            android:name=".volunteer.VolDonasiBerhasil"
+            android:exported="false"
+            android:theme="@style/Theme.Turahan.NoActionBarAndStatusBar" />
+        <activity
             android:name=".InstruksiPembayaran"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Turahan.NoActionBarAndStatusBar" />
         <activity
             android:name=".volunteer.VolDonationDetail"
             android:exported="false"

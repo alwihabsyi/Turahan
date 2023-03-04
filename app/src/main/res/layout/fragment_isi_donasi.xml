@@ -17,12 +17,22 @@
         android:paddingEnd="20dp"
         android:paddingBottom="20dp">
 
+        <TextView
+            android:id="@+id/tvInputNominal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Input Nominal"
+            android:fontFamily="@font/montserrat_semibold"
+            android:textSize="22sp"/>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="60dp"
+            android:layout_below="@id/tvInputNominal"
+            android:layout_marginTop="20dp"
             android:gravity="center"
             app:hintEnabled="false"
             app:prefixText="Rp"

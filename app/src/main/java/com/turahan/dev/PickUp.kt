@@ -35,7 +35,7 @@ class PickUp : AppCompatActivity() {
         setContentView(binding.root)
         auth = Firebase.auth
         databaseDonasi =
-            FirebaseDatabase.getInstance().getReference("DonasiMakanan")
+            FirebaseDatabase.getInstance().getReference("Donasi")
 
         binding.fotoMakanan.setOnClickListener {
             Intent(Intent.ACTION_GET_CONTENT).also {

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".volunteer.VolDonationDetail">
+    tools:context=".volunteer.VolProcessDonation">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/header"
             android:layout_marginTop="20dp"
-            android:text="Waiting Approval"
+            android:text="Donation Processed"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -78,7 +78,7 @@
                         android:text="Donation Type" />
 
                     <TextView
-                        android:id="@+id/tvMetodePembayaran"
+                        android:id="@+id/tvJenisDonasi"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="DANA"
@@ -131,6 +131,7 @@
                         android:textColor="@color/black"
                         android:textStyle="bold" />
                 </LinearLayout>
+
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
@@ -165,7 +166,7 @@
                         android:text="Donation Title" />
 
                     <TextView
-                        android:id="@+id/tvJumlahDonasi"
+                        android:id="@+id/tvJudulDonasi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -194,7 +195,7 @@
                     android:layout_marginEnd="15dp"
                     android:layout_marginBottom="15dp"
                     android:orientation="vertical"
-                    android:visibility="visible">
+                    android:visibility="gone">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -208,10 +209,10 @@
                             android:text="Donation Category" />
 
                         <TextView
-                            android:id="@+id/tvDetailKodeUnik"
+                            android:id="@+id/tvKategoriDonasi"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="-"
+                            android:text="Rp. 25.000"
                             android:textAlignment="textEnd"
                             android:textColor="@color/black"
                             android:textStyle="bold" />
@@ -238,10 +239,10 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/tvalamatDonasi"
+                            android:id="@+id/tvAlamatDonasi"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="-"
+                            android:text="Rp. 25.000"
                             android:textColor="@color/black"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -276,39 +277,9 @@
                 android:id="@+id/btn_Confirm"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginBottom="7dp"
                 android:layout_marginEnd="20dp"
-                android:layout_marginBottom="7dp"
-                android:clickable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="5dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:fontFamily="@font/montserrat_semibold"
-                        android:text="Confirm Donation"
-                        android:textColor="@color/red_maroon"
-                        android:textSize="17sp" />
-
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/btn_Cancel"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="7dp"
-                android:layout_toEndOf="@id/btn_Confirm"
                 android:clickable="true"
                 android:foreground="?android:attr/selectableItemBackground"
                 app:cardBackgroundColor="@color/red_maroon"
@@ -325,8 +296,38 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:fontFamily="@font/montserrat_semibold"
-                        android:text="Cancel Donation"
+                        android:text="Confirm Donation"
                         android:textColor="@color/white"
+                        android:textSize="17sp" />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btn_Cancel"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="7dp"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:layout_toEndOf="@id/btn_Confirm"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="5dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/montserrat_semibold"
+                        android:text="Cancel Donation"
+                        android:textColor="@color/red_maroon"
                         android:textSize="17sp" />
 
                 </RelativeLayout>

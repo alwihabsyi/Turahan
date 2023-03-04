@@ -27,7 +27,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:text="Instruksi Pembayaran"
+            android:text="Payment Details"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -64,20 +64,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tvVirtualAccount"
         android:layout_marginTop="5dp"
-        android:text="Segera lakukan transfer sebelum"
+        android:text="Transfer donation to above Virtual Account"
         android:textAlignment="center"
         android:textSize="14sp" />
-
-    <TextView
-        android:id="@+id/tvTenggatWaktu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tvDeskripsi"
-        android:text="26 Februari 2023 15:14"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        android:textStyle="bold" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvDetailDonasi"
@@ -85,7 +74,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tvDeskripsi"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
         app:cardElevation="5dp">
 
@@ -104,7 +93,7 @@
                     android:id="@+id/textView15"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ID Donasi" />
+                    android:text="Donation ID" />
 
                 <TextView
                     android:id="@+id/tvIdDonasi"
@@ -126,7 +115,7 @@
                     android:id="@+id/textView14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Metode Pembayaran" />
+                    android:text="Payment Method" />
 
                 <TextView
                     android:id="@+id/tvMetodePembayaran"
@@ -162,13 +151,13 @@
             </LinearLayout>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/perbaruiStatusButton"
+                android:id="@+id/backToHomeButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:text="Perbarui status"
+                android:text="Back To Home"
                 android:textAllCaps="false"
                 android:textColor="@color/red_maroon"
                 android:textStyle="bold"
@@ -193,20 +182,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/containerJumlahDonasi"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:layout_height="65dp"
                 android:padding="15dp">
 
                 <TextView
                     android:id="@+id/textView17"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Jumlah Donasi"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="140dp"/>
+                    android:text="Donation Amount"
+                    android:layout_centerVertical="true"/>
 
                 <TextView
                     android:id="@+id/tvJumlahDonasi"
@@ -215,114 +202,12 @@
                     android:text="Rp. 25.632"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="5dp"/>
-
-                <ImageButton
-                    android:id="@+id/expandButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@android:color/transparent"
-                    android:src="@drawable/expand_more" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/containerDetalJumlahDonasi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/containerJumlahDonasi"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginBottom="15dp"
-                android:orientation="vertical"
-                android:visibility="gone">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/textView20"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Jumlah Donasi" />
-
-                    <TextView
-                        android:id="@+id/tvDetailKodeUnik"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Rp. 25.000"
-                        android:textAlignment="textEnd"
-                        android:textColor="@color/black"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/textView21"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Kode Unik" />
-
-                    <TextView
-                        android:id="@+id/tvKodeUnik"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Rp. 632"
-                        android:textAlignment="textEnd"
-                        android:textColor="@color/black"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </LinearLayout>
+                    android:layout_alignParentEnd="true"
+                    android:layout_toEndOf="@id/textView17"
+                    android:textAlignment="textEnd"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="5dp"/>
+            </RelativeLayout>
         </RelativeLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cvBantuan"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/cvJumlahDonasi"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
-        app:cardElevation="5dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="5dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:backgroundTint="@android:color/transparent"
-                android:src="@drawable/help_sign" />
-
-            <TextView
-                android:id="@+id/textView18"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="Bantuan" />
-
-            <ImageButton
-                android:id="@+id/btnBantuan"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/transparent"
-                android:paddingRight="190dp"
-                android:rotationY="180"
-                android:src="@drawable/arrow_back" />
-        </LinearLayout>
     </androidx.cardview.widget.CardView>
 </RelativeLayout>

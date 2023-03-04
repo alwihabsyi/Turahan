@@ -21,6 +21,8 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
 import com.turahan.dev.*
+import com.turahan.dev.data.Artikel
+import com.turahan.dev.data.ListArtikel
 import com.turahan.dev.databinding.FragmentHomeBinding
 import com.turahan.dev.sign.SignUpFragment.Companion.EXTRA_NAME
 import com.turahan.dev.user.home.*
@@ -32,7 +34,7 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var viewPager: ViewPager2
     lateinit var recyclerView: RecyclerView
-    lateinit var rvAdapter: rvArticleHomeAdapter
+    lateinit var rvAdapter: RvArticleHomeAdapter
     private lateinit var auth: FirebaseAuth
     private lateinit var gsc: GoogleSignInClient
     private lateinit var database: DatabaseReference
@@ -93,7 +95,12 @@ class HomeFragment : Fragment() {
         //Intent Button End
 
         //rvArticle Start
-        init()
+        recyclerView = binding.rvMiniArticle
+        var data = ArrayList<Artikel>()
+        data.addAll(ListArtikel.list)
+        rvAdapter = RvArticleHomeAdapter(data)
+        onArticleItemClicked()
+        
         recyclerView.layoutManager = LinearLayoutManager(this.context)
         recyclerView.adapter = rvAdapter
         //rvArticle End
@@ -127,128 +134,14 @@ class HomeFragment : Fragment() {
         }
     }
 
-
-    private fun init() {
-        recyclerView = binding.rvMiniArticle
-
-        var data = ArrayList<ArticleExpand.News>()
-        data.add(
-            ArticleExpand.News(
-                R.drawable.news_image,
-                "Mengapa Bayar Pajak?",
-                "Februari, 17 2023"
-            )
-        )
-        data.add(
-            ArticleExpand.News(
-                R.drawable.news_image,
-                "Mengapa Bayar Pajak?",
-                "Januari, 14 2023"
-            )
-        )
-        data.add(
-            ArticleExpand.News(
-                R.drawable.news_image,
-                "Mengapa Bayar Pajak?",
-                "Agustus, 10 2022"
-            )
-        )
-        data.add(
-            ArticleExpand.News(
-                R.drawable.news_image,
-                "Mengapa Bayar Pajak?",
-                "Februari, 25 2023"
-            )
-        )
-
-        data.add(
-            ArticleExpand.News(
-                R.drawable.news_image,
-                "Mengapa Bayar Pajak?",
-                "Februari, 17 2023"
-            )
-        )
-        data.add(
-            ArticleExpand.News(
-                R.drawable.news_image,
-                "Mengapa Bayar Pajak?",
-                "Januari, 14 2023"
-            )
-        )
-        data.add(
-            ArticleExpand.News(
-                R.drawable.news_image,
-                "Mengapa Bayar Pajak?",
-                "Agustus, 10 2022"
-            )
-        )
-        data.add(
-            ArticleExpand.News(
-                R.drawable.news_image,
-                "Mengapa Bayar Pajak?",
-                "Februari, 25 2023"
-            )
-        )
-
-        data.add(
-            ArticleExpand.News(
-                R.drawable.news_image,
-                "Mengapa Bayar Pajak?",
-                "Februari, 17 2023"
-            )
-        )
-        data.add(
-            ArticleExpand.News(
-                R.drawable.news_image,
-                "Mengapa Bayar Pajak?",
-                "Januari, 14 2023"
-            )
-        )
-        data.add(
-            ArticleExpand.News(
-                R.drawable.news_image,
-                "Mengapa Bayar Pajak?",
-                "Agustus, 10 2022"
-            )
-        )
-        data.add(
-            ArticleExpand.News(
-                R.drawable.news_image,
-                "Mengapa Bayar Pajak?",
-                "Februari, 25 2023"
-            )
-        )
-
-        data.add(
-            ArticleExpand.News(
-                R.drawable.news_image,
-                "Mengapa Bayar Pajak?",
-                "Februari, 17 2023"
-            )
-        )
-        data.add(
-            ArticleExpand.News(
-                R.drawable.news_image,
-                "Mengapa Bayar Pajak?",
-                "Januari, 14 2023"
-            )
-        )
-        data.add(
-            ArticleExpand.News(
-                R.drawable.news_image,
-                "Mengapa Bayar Pajak?",
-                "Agustus, 10 2022"
-            )
-        )
-        data.add(
-            ArticleExpand.News(
-                R.drawable.news_image,
-                "Mengapa Bayar Pajak?",
-                "Februari, 25 2023"
-            )
-        )
-
-        rvAdapter = rvArticleHomeAdapter(data)
+    private fun onArticleItemClicked() {
+        rvAdapter.onItemClick = { artikel ->
+            val intent = Intent(requireContext(), ArticleDetailActivity::class.java)
+            intent.putExtra("ARTIKEL_TITLE", artikel.title)
+            intent.putExtra("ARTIKEL_DATE", artikel.date)
+            intent.putExtra("ARTIKEL_CONTENT", artikel.content)
+            intent.putExtra("ARTIKEL_IMAGE", artikel.image.toString())
+            startActivity(intent)
+        }
     }
-
 }

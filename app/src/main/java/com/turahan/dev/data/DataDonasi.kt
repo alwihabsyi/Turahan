@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class DataDonasiMakanan(
+data class DataDonasi(
     val idUser: String? = null,
     val idDonasi: String? = null,
     val judulDonasi: String? = null,
@@ -15,13 +15,3 @@ data class DataDonasiMakanan(
     val fotoDonasi: String? = null,
     val dropOffPickUp: String? = null
 ): Parcelable
-
-data class DataDonasiUang(
-    val idUser: String? = null,
-    val idDonasi: String? = null,
-    val namaDonasi: String? = null,
-    val metodePembayaran: String? = null,
-    val tanggalDonasi: String? = null,
-    val nominalDonasi: String? = null,
-    val statusDonasi: String? = null
-)

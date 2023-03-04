@@ -15,6 +15,8 @@ import com.squareup.picasso.Picasso
 import com.turahan.dev.data.Constants
 import com.turahan.dev.data.DataUser
 import com.turahan.dev.databinding.ActivityChangeProfileBinding
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ChangeProfileActivity : AppCompatActivity() {
 
@@ -50,16 +52,24 @@ class ChangeProfileActivity : AppCompatActivity() {
                     val poin = it.child("poin").value.toString()
                     val totalPoin = it.child("totalPoin").value.toString()
                     val kaliDonasi = it.child("kaliDonasi").value.toString()
+                    val tanggalBergabung = it.child("tanggalBergabung").value.toString()
 
-                    val datauser = DataUser(uid, uname.toString(), alamat.toString(), totalPoin, poin, kaliDonasi)
+                    val datauser = DataUser(uid, uname.toString(), alamat.toString(), totalPoin, poin, kaliDonasi, tanggalBergabung)
                     database.child(uid).setValue(datauser).addOnSuccessListener {
-                        uploadProfPic()
+                        if(currentFile != null){
+                            uploadProfPic()
+                        }
                     }
                 }
             } else {
                 Toast.makeText(this, "Harap Isi Username", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    fun Date.toString(format: String, locale: Locale = Locale.getDefault()): String {
+        val formatter = SimpleDateFormat(format, locale)
+        return formatter.format(this)
     }
 
     private fun profnamepro() {

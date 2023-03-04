@@ -17,7 +17,9 @@ class OrderSuccess : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.backToHomeButton.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            val intentMain = Intent(this, MainActivity::class.java)
+            intentMain.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intentMain)
             finish()
         }
     }

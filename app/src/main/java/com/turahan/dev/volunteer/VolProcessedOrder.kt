@@ -13,12 +13,12 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import com.turahan.dev.data.DataDonasi
-import com.turahan.dev.databinding.FragmentVolPendingOrderBinding
+import com.turahan.dev.databinding.FragmentVolProcessedOrderBinding
 import com.turahan.dev.user.profile.DonationHistoryAdapter
 
-class VolPendingOrder : Fragment() {
+class VolProcessedOrder : Fragment() {
 
-    private lateinit var binding: FragmentVolPendingOrderBinding
+    private lateinit var binding: FragmentVolProcessedOrderBinding
     private lateinit var userRecyclerView: RecyclerView
     private lateinit var userArrayList: ArrayList<DataDonasi>
     private lateinit var database: DatabaseReference
@@ -29,8 +29,7 @@ class VolPendingOrder : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        binding = FragmentVolPendingOrderBinding.inflate(inflater, container, false)
+        binding = FragmentVolProcessedOrderBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -39,7 +38,7 @@ class VolPendingOrder : Fragment() {
         auth = Firebase.auth
         userArrayList = arrayListOf()
 
-        userRecyclerView = binding.rvPendingOrders
+        userRecyclerView = binding.rvProcessedOrders
         userRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         userRecyclerView.setHasFixedSize(true)
         refresh()
@@ -62,7 +61,7 @@ class VolPendingOrder : Fragment() {
                 if (snapshot.exists()) {
                     for (itemSnapshot in snapshot.children) {
                         val items = itemSnapshot.getValue(DataDonasi::class.java)
-                        if (items?.statusDonasi == "Pending")
+                        if (items?.statusDonasi == "Processed")
                             userArrayList.add(items)
                     }
                     if(userArrayList.isEmpty()){
@@ -85,4 +84,5 @@ class VolPendingOrder : Fragment() {
 
         })
     }
+
 }

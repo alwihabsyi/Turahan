@@ -4,7 +4,6 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -12,8 +11,7 @@ import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import com.turahan.dev.data.DataDonasiMakanan
-import com.turahan.dev.data.DataUser
+import com.turahan.dev.data.DataDonasi
 import com.turahan.dev.databinding.ActivityCustomAdressBinding
 
 class CustomAdressActivity : AppCompatActivity() {
@@ -31,7 +29,7 @@ class CustomAdressActivity : AppCompatActivity() {
         setContentView(binding.root)
         auth = Firebase.auth
         databaseUser = FirebaseDatabase.getInstance().getReference("User")
-        databaseDonasi = FirebaseDatabase.getInstance().getReference("DonasiMakanan")
+        databaseDonasi = FirebaseDatabase.getInstance().getReference("Donasi")
 
         binding.cbDefaultAddress.setOnClickListener {
             databaseUser.child(auth.currentUser!!.uid).get().addOnSuccessListener {
@@ -53,13 +51,19 @@ class CustomAdressActivity : AppCompatActivity() {
         currentFile = Uri.parse(intent.getStringExtra("fotoDonasi"))
 
         binding.btnDonateNow.setOnClickListener {
+
+            if(binding.etAlamat.text.isEmpty() && binding.etDetailAlamat.text.isEmpty() || binding.etJudulAlamat.text.isEmpty()){
+                Toast.makeText(this, "Harap isi alamat", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             val alamatDonasi = "${binding.etAlamat.text} , ${binding.etDetailAlamat.text} , ${binding.etJudulAlamat.text}"
             databaseDonasi.child("idDonasi").get().addOnSuccessListener {
                 val idDonasiuser = it.child("idDonasi").value.toString()
                 if (idDonasiuser == idDonasi) {
                     idDonasi = "${auth.currentUser?.displayName}+${getRandomString(5)}"
                 }
-                val donasiUser = DataDonasiMakanan(
+                val donasiUser = DataDonasi(
                     idUser,
                     idDonasi,
                     judulDonasi,
@@ -67,7 +71,8 @@ class CustomAdressActivity : AppCompatActivity() {
                     tanggalDonasi,
                     kategoriDonasi,
                     statusDonasi,
-                    " "
+                    " ",
+                    "Pick Up"
                 )
 
                 databaseDonasi.child(idDonasi!!).setValue(donasiUser).addOnSuccessListener {
@@ -87,7 +92,7 @@ class CustomAdressActivity : AppCompatActivity() {
                 .addOnSuccessListener {
                     val mapImage = it
 
-                    databaseDonasi = FirebaseDatabase.getInstance().getReference("DonasiMakanan")
+                    databaseDonasi = FirebaseDatabase.getInstance().getReference("Donasi")
                     databaseDonasi.child(id).get().addOnSuccessListener {
                         val idUser = it.child("idUser").value.toString()
                         val idDonasi = it.child("idDonasi").value.toString()
@@ -97,7 +102,7 @@ class CustomAdressActivity : AppCompatActivity() {
                         val statusDonasi = it.child("statusDonasi").value.toString()
                         val tanggalDonasi = it.child("tanggalDonasi").value.toString()
 
-                        val donasiUser = DataDonasiMakanan(
+                        val donasiUser = DataDonasi(
                             idUser,
                             idDonasi,
                             judulDonasi,
@@ -105,7 +110,8 @@ class CustomAdressActivity : AppCompatActivity() {
                             tanggalDonasi,
                             kategoriDonasi,
                             statusDonasi,
-                            "${mapImage}"
+                            "${mapImage}",
+                            "Pick Up"
                         )
 
                         databaseDonasi.child(id).setValue(donasiUser).addOnSuccessListener {

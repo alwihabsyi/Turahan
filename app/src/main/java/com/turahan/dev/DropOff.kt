@@ -14,7 +14,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.turahan.dev.data.Constants
-import com.turahan.dev.data.DataDonasiMakanan
+import com.turahan.dev.data.DataDonasi
 import com.turahan.dev.databinding.ActivityDropOffBinding
 import com.turahan.dev.user.MainActivity
 import java.text.SimpleDateFormat
@@ -34,7 +34,7 @@ class DropOff : AppCompatActivity() {
         setContentView(binding.root)
         auth = Firebase.auth
         databaseDonasi =
-            FirebaseDatabase.getInstance().getReference("DonasiMakanan")
+            FirebaseDatabase.getInstance().getReference("Donasi")
 
         binding.ivImage2.setOnClickListener {
             Intent(Intent.ACTION_GET_CONTENT).also {
@@ -72,7 +72,7 @@ class DropOff : AppCompatActivity() {
                 if (idDonasiuser == id) {
                     id = "${auth.currentUser?.displayName}+${getRandomString(5)}"
                 }
-                val donasiUser = DataDonasiMakanan(
+                val donasiUser = DataDonasi(
                     auth.currentUser!!.uid,
                     id,
                     judulDonasi.toString(),
@@ -101,7 +101,7 @@ class DropOff : AppCompatActivity() {
                 .addOnSuccessListener {
                     val mapImage = it
 
-                    databaseDonasi = FirebaseDatabase.getInstance().getReference("DonasiMakanan")
+                    databaseDonasi = FirebaseDatabase.getInstance().getReference("Donasi")
                     databaseDonasi.child(id).get().addOnSuccessListener {
                         val idUser = it.child("idUser").value.toString()
                         val idDonasi = it.child("idDonasi").value.toString()
@@ -112,7 +112,7 @@ class DropOff : AppCompatActivity() {
                         val tanggalDonasi = it.child("tanggalDonasi").value.toString()
                         val dropOffPickup = it.child("dropOffPickUp").value.toString()
 
-                        val donasiUser = DataDonasiMakanan(
+                        val donasiUser = DataDonasi(
                             idUser,
                             idDonasi,
                             judulDonasi,

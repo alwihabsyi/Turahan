@@ -12,16 +12,15 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
-import com.turahan.dev.data.DataDonasiMakanan
+import com.turahan.dev.data.DataDonasi
 import com.turahan.dev.databinding.FragmentVolSuccessOrderBinding
-import com.turahan.dev.user.profile.DonationDetail
 import com.turahan.dev.user.profile.DonationHistoryAdapter
 
 class VolSuccessOrder : Fragment() {
 
     private lateinit var binding: FragmentVolSuccessOrderBinding
     private lateinit var userRecyclerView: RecyclerView
-    private lateinit var userArrayList: ArrayList<DataDonasiMakanan>
+    private lateinit var userArrayList: ArrayList<DataDonasi>
     private lateinit var database: DatabaseReference
     private lateinit var auth: FirebaseAuth
 
@@ -37,22 +36,31 @@ class VolSuccessOrder : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         auth = Firebase.auth
+        userArrayList = arrayListOf()
 
         userRecyclerView = binding.rvSuccessOrders
         userRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         userRecyclerView.setHasFixedSize(true)
+        refresh()
 
-        userArrayList = arrayListOf()
+        binding.SwipeRefreshLayout.setOnRefreshListener {
+            refresh()
+            binding.SwipeRefreshLayout.isRefreshing = false
+        }
+    }
+
+    private fun refresh() {
+        userArrayList.clear()
         getItemsData()
     }
 
     private fun getItemsData() {
-        database = FirebaseDatabase.getInstance().getReference("DonasiMakanan")
+        database = FirebaseDatabase.getInstance().getReference("Donasi")
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     for (itemSnapshot in snapshot.children) {
-                        val items = itemSnapshot.getValue(DataDonasiMakanan::class.java)
+                        val items = itemSnapshot.getValue(DataDonasi::class.java)
                         if (items?.statusDonasi == "Success")
                             userArrayList.add(items)
                     }
@@ -62,7 +70,7 @@ class VolSuccessOrder : Fragment() {
                         binding.tvNoTransaction.text = null
                     }
                     userRecyclerView.adapter = DonationHistoryAdapter(userArrayList) {
-                        Intent(requireContext(), DonationDetail::class.java).apply {
+                        Intent(requireContext(), VolDonationDetail::class.java).apply {
                             putExtra("user", it)
                             startActivity(this)
                         }

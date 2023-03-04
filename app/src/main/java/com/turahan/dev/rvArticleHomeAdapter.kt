@@ -6,9 +6,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.turahan.dev.data.Artikel
 
-class rvArticleHomeAdapter(private val data: ArrayList<ArticleExpand.News>) : RecyclerView.Adapter<rvArticleHomeAdapter.ViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): rvArticleHomeAdapter.ViewHolder {
+class RvArticleHomeAdapter(private val data: ArrayList<Artikel>) : RecyclerView.Adapter<RvArticleHomeAdapter.ViewHolder>() {
+
+    lateinit var onItemClick: ((Artikel) -> Unit)
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RvArticleHomeAdapter.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val listItem = inflater.inflate(R.layout.rv_home_article, parent, false)
         return ViewHolder(listItem)
@@ -18,7 +22,7 @@ class rvArticleHomeAdapter(private val data: ArrayList<ArticleExpand.News>) : Re
         holder.bind(data[position])
     }
 
-    override fun getItemCount(): Int = 3
+    override fun getItemCount(): Int = 4
 
     inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
@@ -32,10 +36,14 @@ class rvArticleHomeAdapter(private val data: ArrayList<ArticleExpand.News>) : Re
             txtDate = view.findViewById(R.id.articleDate)
         }
 
-        fun bind(data: ArticleExpand.News) {
-            imgView?.setImageResource(data.imgView)
-            txtTitle?.text = data.txtTitle
-            txtDate?.text = data.txtDate
+        fun bind(data: Artikel) {
+            imgView?.setImageResource(data.image)
+            txtTitle?.text = data.title
+            txtDate?.text = data.date
+
+            itemView.setOnClickListener {
+                onItemClick.invoke(data)
+            }
         }
 
     }

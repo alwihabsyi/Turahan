@@ -6,8 +6,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.turahan.dev.data.Artikel
 
-class rvArticleAdapter(private val data: ArrayList<ArticleExpand.News>) : RecyclerView.Adapter<rvArticleAdapter.ViewHolder>() {
+class rvArticleAdapter(private val data: ArrayList<Artikel>) : RecyclerView.Adapter<rvArticleAdapter.ViewHolder>() {
+
+    lateinit var onItemClick: ((Artikel) -> Unit)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): rvArticleAdapter.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val listItem = inflater.inflate(R.layout.rv_article, parent, false)
@@ -34,10 +37,14 @@ class rvArticleAdapter(private val data: ArrayList<ArticleExpand.News>) : Recycl
             txtDate = view.findViewById(R.id.articleDate)
         }
 
-        fun bind(data: ArticleExpand.News) {
-            imgView?.setImageResource(data.imgView)
-            txtTitle?.text = data.txtTitle
-            txtDate?.text = data.txtDate
+        fun bind(data: Artikel) {
+            imgView?.setImageResource(data.image)
+            txtTitle?.text = data.title
+            txtDate?.text = data.date
+
+            itemView.setOnClickListener {
+                onItemClick.invoke(data)
+            }
         }
 
     }

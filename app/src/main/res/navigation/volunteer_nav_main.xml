@@ -20,6 +20,9 @@
         android:name="com.turahan.dev.volunteer.VolunteerProfileFragment"
         android:label="fragment_volunteer_profile"
         tools:layout="@layout/fragment_volunteer_profile" >
+        <action
+            android:id="@+id/action_fragment_volunteer_profile_to_fragment_volunteer_home"
+            app:destination="@id/fragment_volunteer_home" />
     </fragment>
 
 </navigation>

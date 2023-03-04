@@ -14,9 +14,10 @@
             app:tabSelectedTextColor="@color/red_maroon"
             app:tabTextAppearance="@style/TabLayoutTextStyle"
             app:tabRippleColor="#63C03E3E"
+            app:tabMode="fixed"
             app:tabTextColor="@color/black"/>
 
-        <androidx.viewpager.widget.ViewPager
+        <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPagerVolHome"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

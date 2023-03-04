@@ -10,7 +10,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import com.turahan.dev.user.profile.DonationHistoryAdapter
-import com.turahan.dev.data.DataDonasiMakanan
+import com.turahan.dev.data.DataDonasi
 import com.turahan.dev.databinding.ActivityVolunteerDonationHistoryBinding
 import com.turahan.dev.user.profile.DonationDetail
 
@@ -18,7 +18,7 @@ class VolunteerDonationHistory : AppCompatActivity() {
 
     private lateinit var binding: ActivityVolunteerDonationHistoryBinding
     private lateinit var userRecyclerView: RecyclerView
-    private lateinit var userArrayList: ArrayList<DataDonasiMakanan>
+    private lateinit var userArrayList: ArrayList<DataDonasi>
     private lateinit var database: DatabaseReference
     private lateinit var auth: FirebaseAuth
 
@@ -33,17 +33,17 @@ class VolunteerDonationHistory : AppCompatActivity() {
         userRecyclerView.layoutManager = LinearLayoutManager(this)
         userRecyclerView.setHasFixedSize(true)
 
-        userArrayList = arrayListOf<DataDonasiMakanan>()
+        userArrayList = arrayListOf<DataDonasi>()
         getItemsData()
     }
 
     private fun getItemsData() {
-        database = FirebaseDatabase.getInstance().getReference("DonasiMakanan")
+        database = FirebaseDatabase.getInstance().getReference("Donasi")
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     for (itemSnapshot in snapshot.children) {
-                        val items = itemSnapshot.getValue(DataDonasiMakanan::class.java)
+                        val items = itemSnapshot.getValue(DataDonasi::class.java)
                         userArrayList.add(items!!)
                     }
                     if(userArrayList.isEmpty()){
