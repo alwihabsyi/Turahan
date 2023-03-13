@@ -42,7 +42,7 @@ class VolPendingOrder : Fragment() {
         userRecyclerView = binding.rvPendingOrders
         userRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         userRecyclerView.setHasFixedSize(true)
-        refresh()
+        getItemsData()
 
         binding.SwipeRefreshLayout.setOnRefreshListener {
             refresh()
@@ -84,5 +84,10 @@ class VolPendingOrder : Fragment() {
             }
 
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        refresh()
     }
 }

@@ -16,6 +16,14 @@
         android:theme="@style/Theme.Turahan"
         tools:targetApi="31">
         <activity
+            android:name=".PaymentMidtrans"
+            android:exported="false"
+            android:theme="@style/Theme.Turahan.NoActionBarAndStatusBar"  />
+        <activity
+            android:name=".volunteer.VolGroupConfirmDon"
+            android:exported="false"
+            android:theme="@style/Theme.Turahan.NoActionBarAndStatusBar" />
+        <activity
             android:name=".volunteer.VolProcessDonation"
             android:exported="false"
             android:theme="@style/Theme.Turahan.NoActionBarAndStatusBar" />
@@ -108,6 +116,10 @@
             android:theme="@style/Theme.Turahan.NoActionBarAndStatusBar" />
         <activity
             android:name=".user.profile.AboutActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Turahan.NoActionBarAndStatusBar" />
+        <activity
+            android:name=".user.profile.DonasiProses"
             android:exported="false"
             android:theme="@style/Theme.Turahan.NoActionBarAndStatusBar" />
         <activity

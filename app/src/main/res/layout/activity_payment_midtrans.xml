@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".PaymentMidtrans">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvPembayaran"
+        android:layout_width="match_parent"
+        android:layout_height="550dp"
+        android:layout_margin="10dp"
+        android:layout_centerInParent="true"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="3dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/bg_nominalcash" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Input Amount"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/montserrat_semibold"
+            android:textSize="20sp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="10dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:boxBackgroundColor="#DADADA"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusBottomEnd="15dp"
+                app:boxCornerRadiusBottomStart="15dp"
+                app:boxCornerRadiusTopEnd="15dp"
+                android:layout_marginBottom="10dp"
+                app:boxCornerRadiusTopStart="15dp"
+                app:boxStrokeColor="@color/red_maroon"
+                app:boxStrokeWidth="0dp"
+                app:hintEnabled="false"
+                app:prefixText="Rp"
+                app:prefixTextColor="@color/black">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputNominal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/montserrat"
+                    android:hint="10000"
+                    android:inputType="number"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tvnominal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:textColor="@color/white"
+                android:layout_below="@id/textInputLayout"
+                android:textSize="18sp"
+                android:paddingStart="5dp"
+                android:text="Instant Pick"
+                android:fontFamily="@font/montserrat_medium"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvnominal"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/btn10k"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    app:cardCornerRadius="15dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:strokeWidth="2dp"
+                    app:strokeColor="@color/white"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:layout_marginBottom="16dp"
+                    app:cardBackgroundColor="#DADADA">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="18sp"
+                        android:paddingStart="5dp"
+                        android:text="Rp. 10,000"
+                        android:fontFamily="@font/montserrat_medium"/>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/btn25k"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    app:cardCornerRadius="15dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:strokeWidth="2dp"
+                    app:strokeColor="@color/white"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:layout_marginBottom="16dp"
+                    app:cardBackgroundColor="#DADADA">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:textSize="18sp"
+                        android:layout_gravity="center_vertical"
+                        android:paddingStart="5dp"
+                        android:text="Rp. 25,000"
+                        android:fontFamily="@font/montserrat_medium"/>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/btn50k"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    app:cardCornerRadius="15dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:strokeWidth="2dp"
+                    app:strokeColor="@color/white"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:layout_marginBottom="16dp"
+                    app:cardBackgroundColor="#DADADA">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="18sp"
+                        android:paddingStart="5dp"
+                        android:text="Rp. 50,000"
+                        android:fontFamily="@font/montserrat_medium"/>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/btn100k"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    app:cardCornerRadius="15dp"
+                    app:strokeWidth="2dp"
+                    app:strokeColor="@color/white"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardBackgroundColor="#DADADA">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="18sp"
+                        android:paddingStart="5dp"
+                        android:text="Rp. 100,000"
+                        android:fontFamily="@font/montserrat_medium"/>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btn_bayar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cvPembayaran"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="35dp"
+            android:minHeight="48dp"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="30dp"
+            app:cardBackgroundColor="@color/BrownDark"
+            app:cardElevation="3dp"
+            android:focusable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/montserrat"
+                android:text="Lanjutkan Pembayaran"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+        </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

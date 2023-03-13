@@ -4,11 +4,13 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -18,6 +20,7 @@ import com.google.firebase.ktx.Firebase
 import com.turahan.dev.data.Constants
 import com.turahan.dev.databinding.ActivityPickUpBinding
 import com.turahan.dev.user.MainActivity
+import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -37,12 +40,29 @@ class PickUp : AppCompatActivity() {
         databaseDonasi =
             FirebaseDatabase.getInstance().getReference("Donasi")
 
-        binding.fotoMakanan.setOnClickListener {
+        binding.btnPickFromGallery.setOnClickListener {
             Intent(Intent.ACTION_GET_CONTENT).also {
                 it.type = "image/*"
                 startActivityForResult(it, Constants.REQUEST_CODE_IMAGE_PICK)
             }
         }
+        //intent CAMERA Start
+        binding.fotoMakanan.isEnabled = true
+
+        if(ActivityCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.CAMERA
+        ) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.CAMERA), 100)
+        } else{
+            binding.fotoMakanan.isEnabled = true
+        }
+
+        binding.fotoMakanan.setOnClickListener {
+            val takePic = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivityForResult(takePic, 101)
+        }
+        //intent CAMERA End
 
         binding.backButtonPickUp.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
@@ -124,6 +144,18 @@ class PickUp : AppCompatActivity() {
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == 101) {
+            val pic: Bitmap? = data?.getParcelableExtra<Bitmap>("data")
+            val bytes: ByteArrayOutputStream = ByteArrayOutputStream()
+            if(pic!=null){
+                pic.compress(Bitmap.CompressFormat.PNG, 100, bytes)
+                val path = MediaStore.Images.Media.insertImage(this.contentResolver, pic, "Title", null)
+                currentFile = Uri.parse(path)
+                binding.fotoMakanan.setImageBitmap(pic)
+            }
+        }
+
         if (resultCode == Activity.RESULT_OK && requestCode == Constants.REQUEST_CODE_IMAGE_PICK) {
             data?.data?.let {
                 currentFile = it

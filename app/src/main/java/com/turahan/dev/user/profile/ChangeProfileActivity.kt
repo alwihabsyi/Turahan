@@ -43,8 +43,13 @@ class ChangeProfileActivity : AppCompatActivity() {
         }
 
         binding.btnUpdate.setOnClickListener {
+            val firstName = binding.etFirstName.text.ifEmpty { "-" }
+            val lastName = binding.etLastName.text.ifEmpty { "-" }
             val uname = binding.etUname.text
-            val alamat = binding.etAlamat.text
+            val nomorTelepon = binding.etNoTelpon.text.ifEmpty { "-" }
+            val alamat = binding.etAlamat.text.ifEmpty { "-" }
+            val kota = binding.etKota.text.ifEmpty { "-" }
+            val kodePos = binding.etKodePos.text.ifEmpty { "-" }
             val uid = auth.currentUser?.uid
 
             if (uname.isNotEmpty()) {
@@ -54,7 +59,20 @@ class ChangeProfileActivity : AppCompatActivity() {
                     val kaliDonasi = it.child("kaliDonasi").value.toString()
                     val tanggalBergabung = it.child("tanggalBergabung").value.toString()
 
-                    val datauser = DataUser(uid, uname.toString(), alamat.toString(), totalPoin, poin, kaliDonasi, tanggalBergabung)
+                    val datauser =
+                        DataUser(
+                            uid,
+                            uname.toString(),
+                            firstName.toString(),
+                            lastName.toString(),
+                            alamat.toString(),
+                            kota.toString(),
+                            kodePos.toString(),
+                            nomorTelepon.toString(),
+                            totalPoin,
+                            poin,
+                            kaliDonasi,
+                            tanggalBergabung)
                     database.child(uid).setValue(datauser).addOnSuccessListener {
                         if(currentFile != null){
                             uploadProfPic()
@@ -62,7 +80,7 @@ class ChangeProfileActivity : AppCompatActivity() {
                     }
                 }
             } else {
-                Toast.makeText(this, "Harap Isi Username", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Username Wajib Diisi", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -75,6 +93,13 @@ class ChangeProfileActivity : AppCompatActivity() {
     private fun profnamepro() {
         val currentUser = auth.currentUser
         if(currentUser != null){
+            database = FirebaseDatabase.getInstance().getReference("User")
+            database.child(auth.currentUser!!.uid).get().addOnSuccessListener {
+                if(it.exists()){
+                    val tvuser = it.child("uname").value.toString()
+                    binding.tvUsername.text = tvuser
+                }
+            }
             val profil = binding.profup
             val datalink = FirebaseDatabase.getInstance().getReference("userImages")
             datalink.child(auth.currentUser!!.uid).get().addOnSuccessListener {

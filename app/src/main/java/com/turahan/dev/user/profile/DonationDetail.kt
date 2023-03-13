@@ -9,6 +9,9 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.liveData
 import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
 import com.google.firebase.auth.FirebaseAuth
@@ -18,14 +21,19 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
 import com.turahan.dev.R
+import com.turahan.dev.RetrofitInstance
 import com.turahan.dev.data.DataDonasi
+import com.turahan.dev.data.TransactionService
+import com.turahan.dev.data.TransactionStatus
 import com.turahan.dev.databinding.ActivityDonationDetailBinding
+import retrofit2.Response
 
 class DonationDetail : AppCompatActivity() {
 
     private lateinit var binding: ActivityDonationDetailBinding
     private lateinit var database: DatabaseReference
     private lateinit var auth: FirebaseAuth
+    private lateinit var retService: TransactionService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -153,5 +161,49 @@ class DonationDetail : AppCompatActivity() {
                 finish()
             }
         }
+
+        if(user.alamatDonasi == "Cash" && user.statusDonasi == "Pending"){
+
+            retService = RetrofitInstance
+                .getRetrofitInstance()
+                .create(TransactionService::class.java)
+
+            val pathResponse: LiveData<Response<TransactionStatus>> = liveData {
+                val response = retService.getTransaction(user.idDonasi)
+                emit(response)
+            }
+
+            pathResponse.observe(this, Observer{
+                val status = it.body()?.transaction_status
+                if(status == "settlement"){
+                    val dataDonasi =
+                        DataDonasi(
+                            auth.currentUser!!.uid,
+                            user.idDonasi,
+                            user.judulDonasi,
+                            user.alamatDonasi,
+                            user.tanggalDonasi,
+                            user.kategoriDonasi,
+                            "Success",
+                            user.fotoDonasi,
+                            user.dropOffPickUp
+                        )
+                    database.child(user.idDonasi).setValue(dataDonasi).addOnSuccessListener {
+                        startActivity(Intent(this, DonasiBerhasil::class.java).apply {
+                            putExtra("tanggalDonasi", user.tanggalDonasi)
+                            putExtra("jenisDonasi", user.dropOffPickUp)
+                            putExtra("idDonasi", user.idDonasi)
+                            putExtra("statusDonasi", user.statusDonasi)
+                            putExtra("judulDonasi", user.judulDonasi)
+                            putExtra("alamatDonasi", user.alamatDonasi)
+                            putExtra("kategoriDonasi", user.kategoriDonasi)
+                        })
+                        finish()
+                    }
+                }
+            })
+
+        }
+
     }
 }

@@ -41,7 +41,7 @@ class VolSuccessOrder : Fragment() {
         userRecyclerView = binding.rvSuccessOrders
         userRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         userRecyclerView.setHasFixedSize(true)
-        refresh()
+        getItemsData()
 
         binding.SwipeRefreshLayout.setOnRefreshListener {
             refresh()
@@ -83,6 +83,11 @@ class VolSuccessOrder : Fragment() {
             }
 
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        refresh()
     }
 
 }

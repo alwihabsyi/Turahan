@@ -28,7 +28,7 @@ class VolProcessedOrder : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentVolProcessedOrderBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -41,11 +41,15 @@ class VolProcessedOrder : Fragment() {
         userRecyclerView = binding.rvProcessedOrders
         userRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         userRecyclerView.setHasFixedSize(true)
-        refresh()
+        getItemsData()
 
         binding.SwipeRefreshLayout.setOnRefreshListener {
             refresh()
             binding.SwipeRefreshLayout.isRefreshing = false
+        }
+
+        binding.btnConfirmGroup.setOnClickListener {
+            startActivity(Intent(requireContext(), VolGroupConfirmDon::class.java))
         }
     }
 
@@ -83,6 +87,11 @@ class VolProcessedOrder : Fragment() {
             }
 
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        refresh()
     }
 
 }

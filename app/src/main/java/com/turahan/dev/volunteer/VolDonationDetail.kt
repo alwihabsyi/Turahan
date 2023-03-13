@@ -70,8 +70,7 @@ class VolDonationDetail : AppCompatActivity() {
 
         //Btn Confirm
         binding.btnConfirm.setOnClickListener {
-            var statusDonasi: String
-            statusDonasi = if(user?.dropOffPickUp == "Pick Up" || user?.dropOffPickUp == "Drop Off")
+            val statusDonasi: String = if(user?.dropOffPickUp == "Pick Up" || user?.dropOffPickUp == "Drop Off")
                 "Processed"
             else
                 "Success"

@@ -19,13 +19,11 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ktx.getValue
-import com.google.firebase.database.ktx.snapshots
 import com.google.firebase.ktx.Firebase
 import com.turahan.dev.R
 import com.turahan.dev.data.DataUser
-import com.turahan.dev.user.MainActivity
 import com.turahan.dev.databinding.FragmentSignInBinding
+import com.turahan.dev.user.MainActivity
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -89,6 +87,7 @@ class SignInFragment : BottomSheetDialogFragment() {
     }
 
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -106,7 +105,6 @@ class SignInFragment : BottomSheetDialogFragment() {
 
     companion object {
         const val RC_SIGN_UP = 1000
-        const val EXTRA_NAME = "EXTRA NAME"
     }
 
     private fun googleSignIn() {
@@ -146,7 +144,19 @@ class SignInFragment : BottomSheetDialogFragment() {
             }else{
                 val date = Calendar.getInstance().time
                 val tanggalBergabung = date.toString("dd MMMM YYYY")
-                val datauser = DataUser(user.uid, user.displayName, " ", "0", "0", "0", tanggalBergabung)
+                val datauser = DataUser(
+                    user.uid,
+                    user.displayName,
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "0",
+                    "0",
+                    "0",
+                    tanggalBergabung)
                 database.child(user.uid).setValue(datauser)
                 val intent = Intent(context, MainActivity::class.java)
                 intent.putExtra(SignUpFragment.EXTRA_NAME, user.displayName)

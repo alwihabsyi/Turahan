@@ -161,7 +161,19 @@ class SignUpFragment : BottomSheetDialogFragment() {
             }else{
                 val date = Calendar.getInstance().time
                 val tanggalBergabung = date.toString("dd MMMM YYYY")
-                val datauser = DataUser(user.uid, user.displayName, " ", "0", "0", "0", tanggalBergabung)
+                val datauser = DataUser(
+                    user.uid,
+                    user.displayName,
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "0",
+                    "0",
+                    "0",
+                    tanggalBergabung)
                 database.child(user.uid).setValue(datauser)
                 val intent = Intent(context, MainActivity::class.java)
                 intent.putExtra(EXTRA_NAME, user.displayName)

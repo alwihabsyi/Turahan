@@ -2,10 +2,14 @@ package com.turahan.dev
 
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
@@ -17,6 +21,7 @@ import com.turahan.dev.data.Constants
 import com.turahan.dev.data.DataDonasi
 import com.turahan.dev.databinding.ActivityDropOffBinding
 import com.turahan.dev.user.MainActivity
+import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -36,12 +41,30 @@ class DropOff : AppCompatActivity() {
         databaseDonasi =
             FirebaseDatabase.getInstance().getReference("Donasi")
 
-        binding.ivImage2.setOnClickListener {
+        binding.btnPickFromGallery.setOnClickListener {
             Intent(Intent.ACTION_GET_CONTENT).also {
                 it.type = "image/*"
                 startActivityForResult(it, Constants.REQUEST_CODE_IMAGE_PICK)
             }
         }
+
+        //intent CAMERA Start
+        binding.ivImage2.isEnabled = true
+
+        if(ActivityCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.CAMERA
+            ) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.CAMERA), 100)
+        } else{
+            binding.ivImage2.isEnabled = true
+        }
+
+        binding.ivImage2.setOnClickListener {
+            val takePic = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivityForResult(takePic, 101)
+        }
+        //intent CAMERA End
 
         binding.backButtonDropOff.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
@@ -154,6 +177,17 @@ class DropOff : AppCompatActivity() {
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == 101) {
+            val pic: Bitmap? = data?.getParcelableExtra<Bitmap>("data")
+            val bytes: ByteArrayOutputStream = ByteArrayOutputStream()
+            if(pic!=null){
+                pic.compress(Bitmap.CompressFormat.PNG, 100, bytes)
+                val path = MediaStore.Images.Media.insertImage(this.contentResolver, pic, "Title", null)
+                currentFile = Uri.parse(path)
+                binding.ivImage2.setImageBitmap(pic)
+            }
+        }
+
         if (resultCode == Activity.RESULT_OK && requestCode == Constants.REQUEST_CODE_IMAGE_PICK) {
             data?.data?.let {
                 currentFile = it

@@ -58,6 +58,8 @@ class DonationHistoryAdapter(
                 bg.setBackgroundColor(Color.parseColor("#39FC03"))
             } else if (data.statusDonasi == "Processed") {
                 bg.setBackgroundColor(Color.parseColor("#FFFFC107"))
+            } else if (data.statusDonasi == "Pending") {
+                bg.setBackgroundColor(Color.parseColor("#9403A9F4"))
             }
 
             itemView.setOnClickListener { eventHandling(data) }

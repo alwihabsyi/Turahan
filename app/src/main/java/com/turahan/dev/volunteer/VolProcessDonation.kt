@@ -127,30 +127,30 @@ class VolProcessDonation : AppCompatActivity() {
                     }
                 }
             }
+        }
 
-            binding.btnCancel.setOnClickListener {
-                val dialogBinding = layoutInflater.inflate(R.layout.cancel_dialog, null)
-                val dialog = Dialog(this)
-                dialog.setContentView(dialogBinding)
+        binding.btnCancel.setOnClickListener {
+            val dialogBinding = layoutInflater.inflate(R.layout.cancel_dialog, null)
+            val dialog = Dialog(this)
+            dialog.setContentView(dialogBinding)
 
-                dialog.setCancelable(true)
-                dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                dialog.show()
+            dialog.setCancelable(true)
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialog.show()
 
-                val yesbtn = dialogBinding.findViewById<Button>(R.id.btn_yes)
-                val nobtn = dialogBinding.findViewById<Button>(R.id.btn_no)
+            val yesbtn = dialogBinding.findViewById<Button>(R.id.btn_yes)
+            val nobtn = dialogBinding.findViewById<Button>(R.id.btn_no)
 
-                yesbtn.setOnClickListener {
-                    databaseDonasi.child(idDonasi).removeValue().addOnSuccessListener {
-                        Toast.makeText(this, "Donation Cancellation Success", Toast.LENGTH_SHORT)
-                            .show()
-                        finish()
-                    }
+            yesbtn.setOnClickListener {
+                databaseDonasi.child(idDonasi!!).removeValue().addOnSuccessListener {
+                    Toast.makeText(this, "Donation Cancellation Success", Toast.LENGTH_SHORT)
+                        .show()
+                    finish()
                 }
+            }
 
-                nobtn.setOnClickListener {
-                    dialog.cancel()
-                }
+            nobtn.setOnClickListener {
+                dialog.cancel()
             }
         }
     }

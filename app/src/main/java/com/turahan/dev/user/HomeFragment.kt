@@ -84,7 +84,7 @@ class HomeFragment : Fragment() {
             startActivity(Intent(requireContext(), DropOff::class.java))
         }
         binding.btnDonateCash.setOnClickListener {
-            IsiDonasi().show(requireActivity().supportFragmentManager, "isi donasi")
+            startActivity(Intent(requireContext(), PaymentMidtrans::class.java))
         }
         binding.btnArticleExpand.setOnClickListener {
             startActivity(Intent(requireContext(), ArticleExpand::class.java))
