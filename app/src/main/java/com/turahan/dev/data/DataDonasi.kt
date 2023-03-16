@@ -13,5 +13,8 @@ data class DataDonasi(
     val kategoriDonasi: String? = null,
     val statusDonasi: String? = null,
     val fotoDonasi: String? = null,
-    val dropOffPickUp: String? = null
+    val dropOffPickUp: String? = null,
+    val titleCampaign: String? = null,
+    val fotoBukti: String? = null,
+    var isSelected: Boolean? = null
 ): Parcelable

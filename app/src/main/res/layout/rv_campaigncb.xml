@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="10dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginBottom="5dp"
+    app:cardCornerRadius="15dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/ivCampaign"
+            android:layout_width="110dp"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/articlebg"
+            android:layout_alignBottom="@id/tvTanggalCampaign"
+            android:layout_alignTop="@id/tvJudulCampaign"
+            android:clipToOutline="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/poster_one"
+            android:contentDescription="TODO" />
+
+        <TextView
+            android:id="@+id/tvJudulCampaign"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_above="@+id/tvTanggalCampaign"
+            android:layout_marginEnd="13dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toEndOf="@id/ivCampaign"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="How to recycle plastic waste"
+            android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvTanggalCampaign"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_toEndOf="@id/ivCampaign"
+                android:text="12-02-2023"/>
+
+    </RelativeLayout>
+
+    <CheckBox
+        android:id="@+id/checkboxCampaign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:layout_gravity="center_vertical|end"/>
+
+</androidx.cardview.widget.CardView>

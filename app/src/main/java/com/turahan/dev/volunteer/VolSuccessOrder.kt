@@ -47,6 +47,10 @@ class VolSuccessOrder : Fragment() {
             refresh()
             binding.SwipeRefreshLayout.isRefreshing = false
         }
+
+        binding.btnConfirmGroup.setOnClickListener {
+            startActivity(Intent(requireContext(), VolGroupConfirmDon::class.java))
+        }
     }
 
     private fun refresh() {

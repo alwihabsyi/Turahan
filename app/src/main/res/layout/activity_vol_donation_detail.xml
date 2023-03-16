@@ -314,7 +314,8 @@
                 android:foreground="?android:attr/selectableItemBackground"
                 app:cardBackgroundColor="@color/red_maroon"
                 app:cardCornerRadius="12dp"
-                app:cardElevation="5dp">
+                app:cardElevation="5dp"
+                android:focusable="true">
 
                 <RelativeLayout
                     android:layout_width="match_parent"

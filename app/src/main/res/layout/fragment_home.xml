@@ -10,59 +10,60 @@
         android:layout_width="match_parent"
         android:layout_height="0dp">
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/logo"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="17dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
-            android:src="@drawable/logo" />
-
-        <TextView
-            android:id="@+id/logotxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="-15dp"
-            android:layout_marginTop="20dp"
-            android:layout_toEndOf="@+id/logo"
-            android:fontFamily="@font/righteous"
-            android:text="@string/appname"
-            android:textColor="#B83B3B"
-            android:textSize="20sp" />
-
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/notificon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:src="@drawable/notificon" />
-
-<!--        <com.google.android.material.imageview.ShapeableImageView-->
-<!--            android:id="@+id/notificonred"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_alignParentEnd="true"-->
-<!--            android:layout_marginTop="18dp"-->
-<!--            android:layout_marginEnd="20dp"-->
-<!--            android:src="@drawable/rednotif" />-->
-
-        <View
+        <RelativeLayout
+            android:id="@+id/logosection"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@id/logotxt"
-            android:layout_marginTop="18dp"
-            android:background="#EDEDED"
-            android:elevation="1dp" />
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/logo"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="17dp"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="13dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/logomaroon" />
+
+            <ImageView
+                android:id="@+id/logotxt"
+                android:layout_width="100dp"
+                android:layout_height="22dp"
+                android:layout_marginTop="18dp"
+                android:layout_toEndOf="@+id/logo"
+                android:fontFamily="@font/righteous"
+                android:layout_centerVertical="true"
+                android:src="@drawable/textlogo"
+                android:text="@string/appname"
+                android:textColor="#B83B3B"
+                android:textSize="20sp" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/notificon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/notificon" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/logotxt"
+                android:layout_marginTop="18dp"
+                android:background="#EDEDED"
+                android:elevation="1dp" />
+
+        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/sectionone"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:layout_below="@+id/logo"
+            android:layout_below="@+id/logosection"
             android:paddingStart="25dp"
             android:paddingTop="20dp"
             android:paddingEnd="25dp"
@@ -132,9 +133,9 @@
             android:layout_height="95dp"
             android:layout_below="@id/sectionone"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="10dp"
             app:cardCornerRadius="10dp"
             app:cardElevation="5dp">
 
@@ -250,6 +251,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="20dp"
+            android:layout_marginTop="15dp"
             android:layout_below="@id/cvviewPager">
 
             <TextView

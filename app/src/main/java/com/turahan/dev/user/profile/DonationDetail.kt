@@ -157,6 +157,8 @@ class DonationDetail : AppCompatActivity() {
                     putExtra("judulDonasi", user.judulDonasi)
                     putExtra("alamatDonasi", user.alamatDonasi)
                     putExtra("kategoriDonasi", user.kategoriDonasi)
+                    putExtra("judulCampaign", user.titleCampaign)
+                    putExtra("buktiFoto", user.fotoBukti)
                 })
                 finish()
             }

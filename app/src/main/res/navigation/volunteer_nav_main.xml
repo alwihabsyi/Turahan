@@ -11,7 +11,17 @@
         android:label="fragment_volunteer_home"
         tools:layout="@layout/fragment_volunteer_home" >
         <action
-            android:id="@+id/action_fragment_volunteer_home_to_fragment_volunteer_profile"
+            android:id="@+id/action_fragment_volunteer_home_to_fragment_campaign"
+            app:destination="@id/fragment_campaign" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_campaign"
+        android:name="com.turahan.dev.volunteer.CampaignFragment"
+        android:label="fragment_campaign"
+        tools:layout="@layout/fragment_campaign" >
+        <action
+            android:id="@+id/action_fragment_volunteer_campaign_to_fragment_volunteer_profile"
             app:destination="@id/fragment_volunteer_profile" />
     </fragment>
 
@@ -20,9 +30,6 @@
         android:name="com.turahan.dev.volunteer.VolunteerProfileFragment"
         android:label="fragment_volunteer_profile"
         tools:layout="@layout/fragment_volunteer_profile" >
-        <action
-            android:id="@+id/action_fragment_volunteer_profile_to_fragment_volunteer_home"
-            app:destination="@id/fragment_volunteer_home" />
     </fragment>
 
 </navigation>

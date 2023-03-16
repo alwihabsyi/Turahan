@@ -7,6 +7,11 @@
         android:icon="@drawable/ic_home"
         android:title="Home" />
     <item
+        android:id="@+id/fragment_campaign"
+        android:contentDescription="@string/app_name"
+        android:icon="@drawable/ic_campaign"
+        android:title="Campaign" />
+    <item
         android:id="@+id/fragment_volunteer_profile"
         android:contentDescription="@string/app_name"
         android:icon="@drawable/ic_profile"

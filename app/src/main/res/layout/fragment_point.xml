@@ -140,7 +140,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="130dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/kuotapic" />
+                        android:src="@drawable/logogp" />
 
                     <View
                         android:layout_width="match_parent"
@@ -159,7 +159,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:fontFamily="@font/montserrat"
-                            android:text="Kuota Internet 8GB"
+                            android:text="Google Play Points"
                             android:textSize="17sp" />
 
                         <com.google.android.material.imageview.ShapeableImageView
@@ -206,8 +206,7 @@
                         android:id="@+id/ivKuota2"
                         android:layout_width="match_parent"
                         android:layout_height="130dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/kuotapic" />
+                        android:src="@drawable/globelogo" />
 
                     <View
                         android:layout_width="match_parent"
@@ -226,7 +225,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:fontFamily="@font/montserrat"
-                            android:text="Kuota Internet 16GB"
+                            android:text="16GB Internet Balance"
                             android:textSize="17sp" />
 
                         <com.google.android.material.imageview.ShapeableImageView
@@ -273,8 +272,7 @@
                         android:id="@+id/ivKuota3"
                         android:layout_width="match_parent"
                         android:layout_height="130dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/kuotapic" />
+                        android:src="@drawable/globelogo" />
 
                     <View
                         android:layout_width="match_parent"
@@ -293,7 +291,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:fontFamily="@font/montserrat"
-                            android:text="Kuota Internet 32GB"
+                            android:text="32GB Internet Balance"
                             android:textSize="17sp" />
 
                         <com.google.android.material.imageview.ShapeableImageView

@@ -25,20 +25,6 @@
             android:layout_height="match_parent"
             tools:listitem="@layout/rv_volunteer"/>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btn_ConfirmGroup"
-            android:layout_width="53dp"
-            android:layout_height="53dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="30dp"
-            android:contentDescription="floatingButton"
-            android:foreground="@drawable/ic_plus"
-            app:backgroundTint="@color/red_maroon" />
-
     </RelativeLayout>
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

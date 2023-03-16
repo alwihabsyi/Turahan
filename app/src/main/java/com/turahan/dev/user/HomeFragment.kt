@@ -1,6 +1,8 @@
 package com.turahan.dev.user
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +13,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
+import com.getkeepsafe.taptargetview.TapTarget
+import com.getkeepsafe.taptargetview.TapTargetView
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -38,6 +42,8 @@ class HomeFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var gsc: GoogleSignInClient
     private lateinit var database: DatabaseReference
+    lateinit var prefEditor: SharedPreferences.Editor
+    lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,20 +59,23 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         auth = Firebase.auth
+        sharedPreferences = requireContext().getSharedPreferences("didShowGuideline", Context.MODE_PRIVATE)
+        prefEditor = sharedPreferences.edit()
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken("793143099222-j5r05tbkdqilsken13gv4f9jj3u3s5bj.apps.googleusercontent.com")
             .requestEmail()
             .build()
         gsc = GoogleSignIn.getClient(requireContext(), gso)
         profname()
+        showFeaturesGuidelines()
 
         //ViewPager Start
         viewPager = view.findViewById(R.id.viewPager)
 
         val images = listOf(
+            R.drawable.poster_three,
             R.drawable.poster_one,
-            R.drawable.poster_two,
-            R.drawable.poster_three
+            R.drawable.poster_two
         )
 
         val adapter = ViewPagerAdapter(images)
@@ -143,5 +152,69 @@ class HomeFragment : Fragment() {
             intent.putExtra("ARTIKEL_IMAGE", artikel.image.toString())
             startActivity(intent)
         }
+    }
+
+    private fun promptFinished(): Boolean {
+        return sharedPreferences.getBoolean("promptFinished", false)
+    }
+
+    private fun showFeaturesGuidelines() {
+        if (!promptFinished()) {
+            showPickUpPrompt()
+        }
+    }
+    private fun showPickUpPrompt() {
+        TapTargetView.showFor(
+            activity,
+            TapTarget.forView(binding.btnPickUp, "Pickup Food Donation", "Donate your food donation from anywhere")
+                .tintTarget(false)
+                .outerCircleColor(R.color.BrownDark)
+                .cancelable(false)
+                .textColor(R.color.white)
+                .titleTextSize(24),
+            object : TapTargetView.Listener() {
+                override fun onTargetClick(view: TapTargetView?) {
+                    super.onTargetClick(view)
+                    showDropOffPrompt()
+                }
+            }
+        )
+    }
+    private fun showDropOffPrompt() {
+        TapTargetView.showFor(
+            activity,
+            TapTarget.forView(binding.btnDropOff, "Drop Off Food Donation", "Deliver your food donation in our several drop points")
+                .tintTarget(false)
+                .outerCircleColor(R.color.BrownDark)
+                .cancelable(false)
+                .textColor(R.color.white)
+                .titleTextSize(24),
+            object : TapTargetView.Listener() {
+                override fun onTargetClick(view: TapTargetView?) {
+                    super.onTargetClick(view)
+                    showCashDonatePrompt()
+                }
+            }
+        )
+    }
+
+    private fun showCashDonatePrompt() {
+        TapTargetView.showFor(
+            activity,
+            TapTarget.forView(binding.btnDonateCash, "Cash Donation", "Besides Food Donate, you can donate cash for needy people")
+                .tintTarget(false)
+                .cancelable(false)
+                .outerCircleColor(R.color.BrownDark)
+                .textColor(R.color.white)
+                .titleTextSize(24),
+            object : TapTargetView.Listener() {
+                override fun onTargetClick(view: TapTargetView?) {
+                    super.onTargetClick(view)
+                    prefEditor = sharedPreferences.edit()
+                    prefEditor.putBoolean("promptFinished", true)
+                    prefEditor.apply()
+                }
+            }
+        )
     }
 }

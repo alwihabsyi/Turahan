@@ -21,6 +21,8 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.turahan.dev.R
+import com.turahan.dev.data.Constants
+import com.turahan.dev.data.Constants.SERVER_CLIENT_ID
 import com.turahan.dev.data.DataUser
 import com.turahan.dev.databinding.FragmentSignUpBinding
 import com.turahan.dev.user.MainActivity
@@ -47,7 +49,7 @@ class SignUpFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         auth = Firebase.auth
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken("881490459068-1634ddiek6dlne2j6atscesdmlge7vta.apps.googleusercontent.com")
+            .requestIdToken(SERVER_CLIENT_ID)
             .requestEmail()
             .build()
         gsc = GoogleSignIn.getClient(requireContext(), gso)
@@ -89,7 +91,19 @@ class SignUpFragment : BottomSheetDialogFragment() {
                     val uid = auth.currentUser?.uid
                     val date = Calendar.getInstance().time
                     val tanggalBergabung = date.toString("dd MMMM YYYY")
-                    val datauser = DataUser(uid, user, " ", "0", "0", "0", tanggalBergabung)
+                    val datauser = DataUser(
+                        uid,
+                        etUname.toString(),
+                        "-",
+                        "-",
+                        "-",
+                        "-",
+                        "-",
+                        "-",
+                        "0",
+                        "0",
+                        "0",
+                        tanggalBergabung)
                     database.child(uid!!).setValue(datauser)
 
 
@@ -152,33 +166,35 @@ class SignUpFragment : BottomSheetDialogFragment() {
 
     private fun updateUI(user: FirebaseUser?) {
         database = FirebaseDatabase.getInstance().getReference("User")
-        database.child(user!!.uid).get().addOnSuccessListener {
-            if(it.exists()){
-                val intent = Intent(context, MainActivity::class.java)
-                intent.putExtra(EXTRA_NAME, user.displayName)
-                startActivity(intent)
-                activity?.finish()
-            }else{
-                val date = Calendar.getInstance().time
-                val tanggalBergabung = date.toString("dd MMMM YYYY")
-                val datauser = DataUser(
-                    user.uid,
-                    user.displayName,
-                    "-",
-                    "-",
-                    "-",
-                    "-",
-                    "-",
-                    "-",
-                    "0",
-                    "0",
-                    "0",
-                    tanggalBergabung)
-                database.child(user.uid).setValue(datauser)
-                val intent = Intent(context, MainActivity::class.java)
-                intent.putExtra(EXTRA_NAME, user.displayName)
-                startActivity(intent)
-                activity?.finish()
+        if (user != null){
+            database.child(user.uid).get().addOnSuccessListener {
+                if(it.exists()){
+                    val intent = Intent(context, MainActivity::class.java)
+                    intent.putExtra(EXTRA_NAME, user.displayName)
+                    startActivity(intent)
+                    activity?.finish()
+                }else{
+                    val date = Calendar.getInstance().time
+                    val tanggalBergabung = date.toString("dd MMMM YYYY")
+                    val datauser = DataUser(
+                        user.uid,
+                        user.displayName,
+                        "-",
+                        "-",
+                        "-",
+                        "-",
+                        "-",
+                        "-",
+                        "0",
+                        "0",
+                        "0",
+                        tanggalBergabung)
+                    database.child(user.uid).setValue(datauser)
+                    val intent = Intent(context, MainActivity::class.java)
+                    intent.putExtra(EXTRA_NAME, user.displayName)
+                    startActivity(intent)
+                    activity?.finish()
+                }
             }
         }
     }
