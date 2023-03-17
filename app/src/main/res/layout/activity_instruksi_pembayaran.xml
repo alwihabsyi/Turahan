@@ -27,7 +27,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:text="Payment Details"
+            android:text="@string/payment_details"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tvVirtualAccount"
         android:layout_marginTop="5dp"
-        android:text="Transfer donation to above Virtual Account"
+        android:text="@string/desc_instruksi_pembayaran"
         android:textAlignment="center"
         android:textSize="14sp" />
 
@@ -93,7 +93,7 @@
                     android:id="@+id/textView15"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Donation ID" />
+                    android:text="@string/donation_id_donation_detail" />
 
                 <TextView
                     android:id="@+id/tvIdDonasi"
@@ -115,7 +115,7 @@
                     android:id="@+id/textView14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Payment Method" />
+                    android:text="@string/payment_method" />
 
                 <TextView
                     android:id="@+id/tvMetodePembayaran"
@@ -138,7 +138,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="Status" />
+                    android:text="@string/status_donation_detail" />
 
                 <TextView
                     android:id="@+id/tvStatus"
@@ -157,7 +157,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:text="Back To Home"
+                android:text="@string/back_to_home"
                 android:textAllCaps="false"
                 android:textColor="@color/red_maroon"
                 android:textStyle="bold"
@@ -192,7 +192,7 @@
                     android:id="@+id/textView17"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Donation Amount"
+                    android:text="@string/donation_amount"
                     android:layout_centerVertical="true"/>
 
                 <TextView

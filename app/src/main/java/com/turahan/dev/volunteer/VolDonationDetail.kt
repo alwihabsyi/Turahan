@@ -93,6 +93,12 @@ class VolDonationDetail : AppCompatActivity() {
                     databaseUser.child(user.idUser!!).get().addOnSuccessListener {
                         if(statusDonasi == "Success"){
                             val uname = it.child("uname").value.toString()
+                            val firstName = it.child("firstName").value.toString()
+                            val lastName = it.child("lastName").value.toString()
+                            val kota = it.child("kota").value.toString()
+                            val kodePos = it.child("kodePos").value.toString()
+                            val nomorTelpon = it.child("nomorTelpon").value.toString()
+                            val tanggalBergabung = it.child("tanggalBergabung").value.toString()
                             val alamat = it.child("alamat").value.toString()
                             val poin = Integer.parseInt(it.child("poin").value.toString())
                             val totalpoin = Integer.parseInt(it.child("totalPoin").value.toString())
@@ -102,8 +108,20 @@ class VolDonationDetail : AppCompatActivity() {
                             val poinFin = (poin).plus(500).toString()
                             val kaliDonasiFin = (kaliDonasi).plus(1).toString()
 
-
-                            val userdata = DataUser(user.idUser, uname, alamat, totalPoinFin, poinFin, kaliDonasiFin)
+                            val userdata =
+                                DataUser(
+                                    user.idUser,
+                                    uname,
+                                    firstName,
+                                    lastName,
+                                    alamat,
+                                    kota,
+                                    kodePos,
+                                    nomorTelpon,
+                                    totalPoinFin,
+                                    poinFin,
+                                    kaliDonasiFin,
+                                    tanggalBergabung)
                             databaseUser.child(user.idUser).setValue(userdata).addOnFailureListener {
                                 Toast.makeText(this, it.localizedMessage, Toast.LENGTH_SHORT).show()
                             }

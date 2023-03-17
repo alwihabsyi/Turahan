@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:fontFamily="@font/montserrat_semibold"
-            android:text="Isi Alamat Penjemputan"
+            android:text="@string/pickUpAddressCustomAddress"
             android:textColor="@color/BrownDark"
             android:textSize="24sp" />
 
@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/montserrat"
-                android:text="Gunakan alamat default"
+                android:text="@string/defaultAddressCustomAddress"
                 android:textAllCaps="false"
                 android:textColor="@color/black" />
 
@@ -66,7 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat"
-                android:text="Alamat Lengkap"
+                android:text="@string/addressCustomAddress"
                 android:textColor="@color/BrownDark" />
 
             <EditText
@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/BrownDark"
                 android:fontFamily="@font/montserrat"
-                android:hint="Isi alamat lengkapmu"
+                android:hint="@string/completeAddressHintCustomAddress"
                 android:paddingStart="12dp"
                 android:textColor="@color/BrownDark" />
         </LinearLayout>
@@ -92,7 +92,7 @@
                 android:id="@+id/label_detail_alamat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Detail Lainnya"
+                android:text="@string/detail_custom_address"
                 android:textColor="@color/BrownDark" />
 
             <EditText
@@ -101,7 +101,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/BrownDark"
                 android:fontFamily="@font/montserrat"
-                android:hint="Gang / Blok, Patokan"
+                android:hint="@string/guide_custom_address"
                 android:paddingStart="12dp"
                 android:textColor="@color/BrownDark" />
         </LinearLayout>
@@ -118,7 +118,7 @@
                 android:id="@+id/labael_judul_alamat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Judul Alamat"
+                android:text="@string/address_title_custom_address"
                 android:textColor="@color/BrownDark" />
 
             <EditText
@@ -127,7 +127,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/BrownDark"
                 android:fontFamily="@font/montserrat"
-                android:hint="Rumah Pribadi, Kantor"
+                android:hint="@string/address_title_description_custom_address"
                 android:paddingStart="12dp"
                 android:textColor="@color/BrownDark" />
         </LinearLayout>
@@ -151,7 +151,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/montserrat"
-                android:text="Donasi Sekarang"
+                android:text="@string/donateBtnCustomAddress"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/white"

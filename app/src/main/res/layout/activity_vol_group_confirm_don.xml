@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="Confirm Donation"
+            android:text="@string/confirm_donation"
             android:textColor="@color/black"
             android:textSize="28sp"
             android:textStyle="bold" />
@@ -37,7 +37,7 @@
             android:layout_below="@id/tvCD"
             android:layout_marginStart="2dp"
             android:layout_marginTop="50dp"
-            android:text="Campaign Title"
+            android:text="@string/campaign_title"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -108,7 +108,7 @@
                     android:layout_marginEnd="5dp"
                     android:layout_toEndOf="@id/icInsertFile"
                     android:maxWidth="600dp"
-                    android:text="Pick Campaign Photo"
+                    android:text="@string/pick_campaign_photo"
                     android:textStyle="bold" />
 
             </RelativeLayout>
@@ -189,7 +189,7 @@
                     android:fontFamily="@font/montserrat_semibold"
                     android:paddingStart="40dp"
                     android:paddingEnd="40dp"
-                    android:text="Next"
+                    android:text="@string/next_btn"
                     android:textColor="@color/red_maroon"
                     android:textSize="17sp" />
 

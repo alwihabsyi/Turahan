@@ -63,18 +63,18 @@ class DonationDetail : AppCompatActivity() {
         binding.tvAlamatDonasi.text = user?.alamatDonasi
 
         if(user?.alamatDonasi == "Cash"){
-            binding.textView20.text = "Donation Amount"
+            binding.textView20.text = getString(R.string.donation_amount)
         }
 
         if(user?.statusDonasi == "Processed"){
             if(user.dropOffPickUp == "Pick Up"){
-                binding.tvMenungguPembayaran.text = "Approved"
-                binding.tvStatusPlus.text = "Waiting For Pick Up"
-                binding.tvStatus.text = "Your food is getting picked up, please prepare"
+                binding.tvMenungguPembayaran.text = getString(R.string.Disetujui)
+                binding.tvStatusPlus.text = getString(R.string.waitPickUp)
+                binding.tvStatus.text = getString(R.string.foodpickup)
             }else if(user.dropOffPickUp == "Drop Off"){
-                binding.tvMenungguPembayaran.text = "Approved"
-                binding.tvStatusPlus.text = "Waiting For Drop Off"
-                binding.tvStatus.text = "Donation confirmed, you can drop off the food at our address"
+                binding.tvMenungguPembayaran.text = getString(R.string.Disetujui)
+                binding.tvStatusPlus.text = getString(R.string.waitDropOff)
+                binding.tvStatus.text = getString(R.string.donConfirmed)
             }
         }else{
             binding.tvStatus.text = user?.statusDonasi

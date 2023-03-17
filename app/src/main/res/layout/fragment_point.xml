@@ -110,7 +110,7 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Claim your points"
+                android:text="@string/claim_your_points"
                 android:textSize="18sp" />
 
             <Spinner

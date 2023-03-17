@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".user.profile.DonationHistory">
+    tools:context=".user.profile.DonationReport">
 
     <TextView
         android:id="@+id/dhAppBar"
@@ -14,7 +14,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:fontFamily="@font/montserrat_medium"
-        android:text="DONATION HISTORY"
+        android:text="@string/donation_report"
         android:textColor="#B83B3B"
         android:textSize="20sp" />
 
@@ -26,25 +26,152 @@
         android:background="#EDEDED"
         android:elevation="1dp" />
 
-    <TextView
-        android:id="@+id/tvNoTransaction"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Tidak Ada Transaksi"
-        android:textSize="20sp"/>
-
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/dhAppBar"
-        android:layout_marginTop="20dp">
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="20dp">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+        <TextView
+            android:id="@+id/tvUname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_semibold"
+            android:text="@string/username"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvTglGabung"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvUname"
+            android:fontFamily="@font/montserrat"
+            android:text="Joined Since"
+            android:textSize="15sp" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvTPoin"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:listitem="@layout/rv_volunteer"/>
+            android:layout_height="100dp"
+            android:layout_below="@id/tvTglGabung"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            app:cardBackgroundColor="@color/red_maron"
+            app:cardCornerRadius="15dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/totaldonasi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="@string/total_point"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/tvTotalDonasi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/totaldonasi"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="30sp" />
+
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvPoinSekarang"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_below="@id/cvTPoin"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="15dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/poinsekarang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="@string/current_point"
+                    android:textColor="@color/red_maron" />
+
+                <TextView
+                    android:id="@+id/tvPoinSaatIni"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/poinsekarang"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:paddingStart="50dp"
+                    android:paddingTop="7dp"
+                    android:paddingEnd="50dp"
+                    android:text="0"
+                    android:textColor="@color/red_maron"
+                    android:textSize="30sp" />
+
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvKaliDonasi"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_below="@id/cvPoinSekarang"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="15dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/kalidonasi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="@string/times_donate"
+                    android:textColor="@color/red_maroon" />
+
+                <TextView
+                    android:id="@+id/tvKaliDonasi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/kalidonasi"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:paddingStart="50dp"
+                    android:paddingTop="7dp"
+                    android:paddingEnd="50dp"
+                    android:text="0"
+                    android:textColor="@color/red_maron"
+                    android:textSize="30sp" />
+
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
 
     </RelativeLayout>
 

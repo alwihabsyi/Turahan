@@ -15,7 +15,7 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Drop Off"
+            android:text="@string/drop_off"
             android:textColor="@color/black"
             android:textSize="34sp"
             android:textStyle="bold"
@@ -47,7 +47,7 @@
             android:paddingEnd="5dp"
             android:paddingBottom="5dp"
             android:paddingStart="3dp"
-            android:text="Donation Title"
+            android:text="@string/donation_title"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -76,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Choose Food Category"
+            android:text="@string/choose_food_category"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -97,14 +97,14 @@
                 android:layout_height="34dp"
                 android:buttonTint="@color/red_maroon"
                 android:checked="true"
-                android:text="Eatable" />
+                android:text="@string/eatable" />
 
             <RadioButton
                 android:id="@+id/uneatableRadioButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:buttonTint="@color/red_maroon"
-                android:text="Uneatable" />
+                android:text="@string/uneatable" />
         </RadioGroup>
 
         <TextView
@@ -113,7 +113,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
-            android:text="Upload Your Food Photo"
+            android:text="@string/upload_your_food_photo"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -175,7 +175,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="Select Drop Point"
+            android:text="@string/select_drop_point"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -258,7 +258,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/icInsertFile"
-                    android:text="Pick From Gallery"
+                    android:text="@string/pick_from_gallery"
                     android:layout_marginStart="2dp"
                     android:layout_marginEnd="5dp"
                     android:textStyle="bold"
@@ -273,7 +273,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/red_maroon"
-            android:text="Donate Now"
+            android:text="@string/donateBtnCustomAddress"
             app:cornerRadius="5dp"
             android:layout_marginTop="20dp"
             app:layout_constraintBottom_toBottomOf="parent"

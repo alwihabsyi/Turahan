@@ -13,7 +13,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="50dp"
         android:fontFamily="@font/montserrat_medium"
-        android:text="Password saat ini"
+        android:text="@string/current_password"
         android:textSize="17sp" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -49,7 +49,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/montserrat_medium"
-        android:text="Password baru"
+        android:text="@string/new_password"
         android:textSize="17sp" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -86,7 +86,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/montserrat_medium"
-        android:text="Konfirmasi Password"
+        android:text="@string/confirm_password"
         android:textSize="17sp" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -136,7 +136,7 @@
             android:layout_height="match_parent"
             android:background="#00000000"
             android:fontFamily="@font/montserrat"
-            android:text="Ganti Password"
+            android:text="@string/change_password"
             android:textAllCaps="false"
             android:textColor="#FFFFFF" />
 

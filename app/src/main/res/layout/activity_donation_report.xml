@@ -14,7 +14,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:fontFamily="@font/montserrat_medium"
-        android:text="DONATION REPORT"
+        android:text="@string/donation_report"
         android:textColor="#B83B3B"
         android:textSize="20sp" />
 
@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_semibold"
-            android:text="Username"
+            android:text="@string/username"
             android:textSize="20sp" />
 
         <TextView
@@ -69,7 +69,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat_medium"
-                    android:text="Total Poin"
+                    android:text="@string/total_point"
                     android:textColor="@color/white" />
 
                 <TextView
@@ -109,7 +109,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat_medium"
-                    android:text="Poin Saat Ini"
+                    android:text="@string/current_point"
                     android:textColor="@color/red_maron" />
 
                 <TextView
@@ -152,7 +152,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat_medium"
-                    android:text="Kali Donasi"
+                    android:text="@string/times_donate"
                     android:textColor="@color/red_maroon" />
 
                 <TextView

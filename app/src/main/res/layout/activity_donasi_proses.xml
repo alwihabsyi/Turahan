@@ -27,7 +27,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:text="Donasi"
+            android:text="@string/donation_donation_detail"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/header"
         android:layout_marginTop="20dp"
-        android:text="Menunggu pembayaran"
+        android:text="@string/waiting_payment_donation_process"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tvMenungguPembayaran"
         android:layout_marginTop="5dp"
-        android:text="Segera lakukan transfer sebelum"
+        android:text="@string/payment_desc_donation_process"
         android:textAlignment="center"
         android:textSize="14sp" />
 
@@ -67,32 +67,32 @@
         android:textSize="14sp"
         android:textStyle="bold" />
 
-<!--    <LinearLayout-->
-<!--        android:id="@+id/containerInstruksiPembayaran"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="30dp"-->
-<!--        android:layout_below="@id/tvTenggatWaktu"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:gravity="center_horizontal|center_vertical"-->
-<!--        android:orientation="horizontal">-->
+    <!--    <LinearLayout-->
+    <!--        android:id="@+id/containerInstruksiPembayaran"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="30dp"-->
+    <!--        android:layout_below="@id/tvTenggatWaktu"-->
+    <!--        android:layout_marginTop="10dp"-->
+    <!--        android:gravity="center_horizontal|center_vertical"-->
+    <!--        android:orientation="horizontal">-->
 
-<!--        <TextView-->
-<!--            android:id="@+id/tvInstruksiPembayaran"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Lihat instruksi pembayaran"-->
-<!--            android:textColor="@color/red_maroon"-->
-<!--            android:textStyle="bold" />-->
+    <!--        <TextView-->
+    <!--            android:id="@+id/tvInstruksiPembayaran"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:text="Lihat instruksi pembayaran"-->
+    <!--            android:textColor="@color/red_maroon"-->
+    <!--            android:textStyle="bold" />-->
 
-<!--        <ImageButton-->
-<!--            android:id="@+id/instruksiButton"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:backgroundTint="@android:color/transparent"-->
-<!--            android:rotationY="180"-->
-<!--            android:src="@drawable/arrow_back"-->
-<!--            app:tint="@color/red_maroon" />-->
-<!--    </LinearLayout>-->
+    <!--        <ImageButton-->
+    <!--            android:id="@+id/instruksiButton"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:backgroundTint="@android:color/transparent"-->
+    <!--            android:rotationY="180"-->
+    <!--            android:src="@drawable/arrow_back"-->
+    <!--            app:tint="@color/red_maroon" />-->
+    <!--    </LinearLayout>-->
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvDetailDonasi"
@@ -119,7 +119,7 @@
                     android:id="@+id/textView15"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ID Donasi" />
+                    android:text="@string/donation_id_donation_detail" />
 
                 <TextView
                     android:id="@+id/tvIdDonasi"
@@ -141,7 +141,7 @@
                     android:id="@+id/textView19"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Virtual Account Number" />
+                    android:text="@string/virtual_account_number" />
 
                 <TextView
                     android:id="@+id/tvVaNumber"
@@ -162,7 +162,7 @@
                     android:id="@+id/textView14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Metode Pembayaran" />
+                    android:text="@string/payment_method" />
 
                 <TextView
                     android:id="@+id/tvMetodePembayaran"
@@ -185,7 +185,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="Status" />
+                    android:text="@string/status_donation_detail" />
 
                 <TextView
                     android:id="@+id/tvStatus"
@@ -208,7 +208,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="Waktu Pembayaran" />
+                    android:text="@string/payment_time" />
 
                 <TextView
                     android:id="@+id/tvWaktuTransaksi"
@@ -227,7 +227,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:text="Perbarui status"
+                android:text="@string/update_status"
                 android:textAllCaps="false"
                 android:textColor="@color/red_maroon"
                 android:textStyle="bold"
@@ -263,7 +263,7 @@
                     android:id="@+id/textView17"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Jumlah Donasi"
+                    android:text="@string/donation_amount"
                     android:layout_gravity="center_vertical"
                     android:layout_marginRight="140dp"/>
 
@@ -305,7 +305,7 @@
                         android:id="@+id/textView20"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Jumlah Donasi" />
+                        android:text="@string/donation_amount" />
 
                     <TextView
                         android:id="@+id/tvDetailKodeUnik"
@@ -372,7 +372,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:text="Bantuan" />
+                android:text="@string/help" />
 
             <ImageButton
                 android:id="@+id/btnBantuan"

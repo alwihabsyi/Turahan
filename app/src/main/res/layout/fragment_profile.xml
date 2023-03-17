@@ -14,7 +14,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:fontFamily="@font/montserrat_medium"
-        android:text="PROFILE"
+        android:text="@string/profile"
         android:textColor="#B83B3B"
         android:textSize="20sp" />
 
@@ -69,7 +69,7 @@
             android:layout_below="@id/tv_username"
             android:layout_centerHorizontal="true"
             android:fontFamily="@font/montserrat"
-            android:text="Change Profile"
+            android:text="@string/change_profile"
             android:textSize="17sp" />
 
         <ImageView
@@ -115,7 +115,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:fontFamily="@font/montserrat"
-                    android:text="Donation Report"
+                    android:text="@string/donationreportpr"
                     android:textSize="15sp" />
 
             </RelativeLayout>
@@ -147,7 +147,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:fontFamily="@font/montserrat"
-                    android:text="Donation History"
+                    android:text="@string/donhistorypr"
                     android:textSize="15sp" />
 
             </RelativeLayout>
@@ -179,7 +179,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:fontFamily="@font/montserrat"
-                    android:text="Security"
+                    android:text="@string/security"
                     android:textSize="15sp" />
 
             </RelativeLayout>
@@ -211,7 +211,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:fontFamily="@font/montserrat"
-                    android:text="About App"
+                    android:text="@string/about_app"
                     android:textSize="15sp" />
 
             </RelativeLayout>
@@ -229,14 +229,15 @@
         android:layout_marginBottom="40dp"
         android:clickable="true"
         android:foreground="?android:attr/selectableItemBackground"
-        app:cardCornerRadius="20dp">
+        app:cardCornerRadius="20dp"
+        android:focusable="true">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/montserrat_semibold"
-            android:text="Log Out"
+            android:text="@string/log_out"
             android:textColor="#FF2929"
             android:textSize="17sp" />
 

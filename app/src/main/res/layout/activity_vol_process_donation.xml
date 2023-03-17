@@ -31,7 +31,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="Donasi"
+                android:text="@string/donation_donation_detail"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/header"
             android:layout_marginTop="20dp"
-            android:text="Donation Processed"
+            android:text="@string/donation_processed"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -75,7 +75,7 @@
                         android:id="@+id/textView14"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Donation Type" />
+                        android:text="@string/donation_type_donation_detail" />
 
                     <TextView
                         android:id="@+id/tvJenisDonasi"
@@ -97,7 +97,7 @@
                         android:id="@+id/textView15"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Donation ID" />
+                        android:text="@string/donation_id_donation_detail" />
 
                     <TextView
                         android:id="@+id/tvIdDonasi"
@@ -120,7 +120,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:text="Status" />
+                        android:text="@string/status_donation_detail" />
 
                     <TextView
                         android:id="@+id/tvStatus"
@@ -296,7 +296,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:fontFamily="@font/montserrat_semibold"
-                        android:text="Confirm Donation"
+                        android:text="@string/confirm_donation"
                         android:textColor="@color/white"
                         android:textSize="17sp" />
 
@@ -327,7 +327,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:fontFamily="@font/montserrat_semibold"
-                        android:text="Cancel Donation"
+                        android:text="@string/cancel_donation"
                         android:textColor="@color/red_maroon"
                         android:textSize="17sp" />
 

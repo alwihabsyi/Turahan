@@ -28,7 +28,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:text="Donasi"
+            android:text="@string/donateBtnCustomAddress"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/header"
         android:layout_marginTop="20dp"
-        android:text="Donation Success"
+        android:text="@string/donation_success"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -72,7 +72,7 @@
                     android:id="@+id/textView13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Date" />
+                    android:text="@string/date" />
 
                 <TextView
                     android:id="@+id/tvTanggal"
@@ -94,7 +94,7 @@
                     android:id="@+id/textView14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Donation Type" />
+                    android:text="@string/donation_type_donation_detail" />
 
                 <TextView
                     android:id="@+id/tvJenisDonasi"
@@ -116,7 +116,7 @@
                     android:id="@+id/textView15"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Donation ID" />
+                    android:text="@string/donation_id_donation_detail" />
 
                 <TextView
                     android:id="@+id/tvIdDonasi"
@@ -139,7 +139,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="Status" />
+                    android:text="@string/status_donation_detail" />
 
                 <TextView
                     android:id="@+id/tvStatus"
@@ -179,7 +179,7 @@
                     android:id="@+id/textView17"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Donation Title" />
+                    android:text="@string/donation_title" />
 
                 <TextView
                     android:id="@+id/tvJudulDonasi"

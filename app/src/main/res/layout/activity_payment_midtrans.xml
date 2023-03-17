@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Input Amount"
+            android:text="@string/input_amount"
             android:textColor="@color/white"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/montserrat_semibold"
@@ -80,7 +80,7 @@
                 android:layout_below="@id/textInputLayout"
                 android:textSize="18sp"
                 android:paddingStart="5dp"
-                android:text="Instant Pick"
+                android:text="@string/instant_pick"
                 android:fontFamily="@font/montserrat_medium"/>
 
             <LinearLayout
@@ -197,34 +197,34 @@
 
     </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/btn_bayar"
-            android:layout_width="match_parent"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/btn_bayar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cvPembayaran"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="35dp"
+        android:minHeight="48dp"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardCornerRadius="30dp"
+        app:cardBackgroundColor="@color/BrownDark"
+        app:cardElevation="3dp"
+        android:focusable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/cvPembayaran"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="35dp"
-            android:layout_marginEnd="35dp"
-            android:minHeight="48dp"
-            android:clickable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            app:cardCornerRadius="30dp"
-            app:cardBackgroundColor="@color/BrownDark"
-            app:cardElevation="3dp"
-            android:focusable="true">
+            android:layout_gravity="center"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/proceeds_to_pay"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:fontFamily="@font/montserrat"
-                android:text="Lanjutkan Pembayaran"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-
-        </androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

@@ -261,7 +261,7 @@
                 android:textSize="20sp"
                 android:textColor="#C03E3E"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="Article"/>
+                android:text="@string/article"/>
 
             <ImageView
                 android:id="@+id/btnArticleExpand"
