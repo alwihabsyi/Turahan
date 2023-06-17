@@ -87,6 +87,11 @@ class PickUp : AppCompatActivity() {
                 kategoriDonasi = "Tidak layak makan"
             }
 
+            if(currentFile == null){
+                Toast.makeText(this, "Harap tambahkan foto", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             startActivity(Intent(this, PickLocation::class.java).apply {
                 putExtra("idUser","${auth.currentUser?.uid}")
                 putExtra("idDonasi",id)

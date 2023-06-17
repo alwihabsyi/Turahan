@@ -108,7 +108,11 @@ class DropOff : AppCompatActivity() {
                 )
 
                 databaseDonasi.child(id).setValue(donasiUser).addOnSuccessListener {
-                    uploadDonationImage(id)
+                    if(currentFile != null){
+                        uploadDonationImage(id)
+                    }else{
+                        Toast.makeText(this, "Harap tambahkan foto", Toast.LENGTH_SHORT).show()
+                    }
                 }.addOnFailureListener {
                     Toast.makeText(this, it.localizedMessage, Toast.LENGTH_SHORT).show()
                 }
