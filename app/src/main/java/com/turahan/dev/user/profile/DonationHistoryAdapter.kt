@@ -13,7 +13,7 @@ import com.turahan.dev.data.DataDonasi
 
 class DonationHistoryAdapter(
     private val dataset: ArrayList<DataDonasi>,
-    val eventHandling: (DataDonasi) -> Unit
+    private val eventHandling: (DataDonasi) -> Unit
 ) :
     RecyclerView.Adapter<DonationHistoryAdapter.DonationViewHolder>() {
 
@@ -32,7 +32,7 @@ class DonationHistoryAdapter(
 
     inner class DonationViewHolder(view: View, val eventHandling: (DataDonasi) -> Unit) :
         RecyclerView.ViewHolder(view) {
-        val fotoDonasi = view.findViewById<ImageView>(R.id.ivDonasi)
+        val fotoDonasi: ImageView = view.findViewById<ImageView>(R.id.ivDonasi)
         val judulDonasi = view.findViewById<TextView>(R.id.tvJudulDonasi)
         val tanggalDonasi = view.findViewById<TextView>(R.id.tvTanggalDonasi)
         val kategoriDonasi = view.findViewById<TextView>(R.id.tvKategoriDonasi)

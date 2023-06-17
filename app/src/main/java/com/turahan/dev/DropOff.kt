@@ -103,7 +103,7 @@ class DropOff : AppCompatActivity() {
                     tanggalDonasi,
                     kategoriDonasi,
                     "Pending",
-                    " ",
+                    "",
                     "Drop Off"
                 )
 
