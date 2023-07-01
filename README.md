@@ -19,9 +19,9 @@ to people in need. As for the uneatable food, will be recycled to compose produc
 - Firebase Storage
 
 **TURAHAN APP DEMO**
-**Pitch Deck:**
-**https://youtu.be/Zp55AVz_hck**
-**Solution Demo:**
-**https://youtu.be/H6BsxCMFXlc**
+- Pitch Deck:
+  https://youtu.be/Zp55AVz_hck
+- Solution Demo:
+  https://youtu.be/H6BsxCMFXlc
 
 nb: There have been several changes to the app since this video was uploaded. you may check it by downloading the app release :)
